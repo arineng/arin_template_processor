@@ -1,4 +1,4 @@
-rootProject.name = "ostp"
+rootProject.name = "arin_template_processsor"
 
 include 'regcore_api'
 include 'template_processor'
