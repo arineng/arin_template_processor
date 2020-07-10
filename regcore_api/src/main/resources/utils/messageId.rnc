@@ -1,0 +1,3 @@
+default namespace = "http://www.arin.net/regrws/messages/v1"
+
+start = element messageId { xsd:integer }

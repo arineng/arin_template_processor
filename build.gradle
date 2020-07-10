@@ -1,0 +1,264 @@
+import org.gradle.internal.jvm.Jvm
+
+assert Jvm.current().javaVersion >= JavaVersion.VERSION_11: 'This project requires Java 11+'
+
+buildscript {
+    repositories {
+        maven { url project.properties.mavenThirdPartyRepository }
+    }
+    dependencies {
+        classpath "com.netflix.nebula:gradle-ospackage-plugin:${project.properties.gradleOspackagePluginVersion}"
+        classpath "com.bmuschko:gradle-clover-plugin:${project.properties.gradleCloverPluginVersion}"
+        classpath "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:${project.properties.gradleGitPropertiesPluginVersion}"
+        classpath "gradle.plugin.com.webcohesion.enunciate:enunciate-gradle:${project.properties.enunciateGradlePluginVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${project.properties.kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:${project.properties.kotlinVersion}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${project.properties.springBootVersion}"
+        classpath "org.apache.commons:commons-lang3:${project.properties.commonsLang3Version}"
+        classpath "gradle.plugin.com.dorongold.plugins:task-tree:${project.properties.gradleTaskTreePluginVersion}"
+        classpath "com.bmuschko:gradle-docker-plugin:${project.properties.gradleDockerPluginVersion}"
+        classpath "com.hubspot.jinjava:jinjava:${project.properties.jinJavaVersion}"
+        classpath "com.github.jengelman.gradle.plugins:shadow:${project.properties.gradleShadowPluginVersion}"
+        classpath "org.owasp:dependency-check-gradle:${project.properties.dependencyCheckVersion}"
+    }
+}
+
+apply plugin: 'com.bmuschko.clover'
+apply plugin: 'org.owasp.dependencycheck'
+
+description = 'ARIN Template Processor'
+
+allprojects {
+    apply plugin: "com.dorongold.task-tree"
+
+    group = 'ARIN'
+
+    project.ext.baseVersion = version
+
+    if (project.hasProperty('branch') &&
+            project.properties['branch'] != 'master' &&
+            project.properties['includeBranchInVersion'] == 'true'
+    ) {
+        version = "${branch.replace('-', '.')}.$version"
+    }
+
+    repositories {
+        maven { url project.properties.mavenThirdPartyRepository }
+    }
+
+    configurations.all {
+        exclude group: 'commons-httpclient', module: 'commons-httpclient'
+        exclude group: 'javassist', module: 'javassist'
+        exclude module: 'jboss-seam-jul'
+        exclude group: 'org.slf4j', module: 'jcl-over-slf4j'
+        exclude group: 'org.slf4j', module: 'slf4j-simple'
+
+        resolutionStrategy {
+            force("commons-beanutils:commons-beanutils:${project.properties.commonsBeanutilsVersion}")
+            force("commons-codec:commons-codec:${project.properties.commonsCodecVersion}")
+            force("commons-collections:commons-collections:${project.properties.commonsCollectionsVersion}")
+            force("commons-lang:commons-lang:${project.properties.commonsLangVersion}")
+            force("javax.faces:jsf-impl:${project.properties.jsfImplVersion}")
+            force("junit:junit:${project.properties.junitVersion}")
+            force("org.javassist:javassist:${project.properties.javassistVersion}")
+            force("org.jboss.seam:jboss-seam:${project.properties.jbossSeamVersion}")
+            force("org.jboss.threads:jboss-threads:${project.properties.jbossThreadsVersion}")
+            force("org.testng:testng:${project.properties.testngVersion}")
+            force("xml-apis:xml-apis:${project.properties.xmlApisVersion}")
+            force("org.apache.velocity:velocity:${project.properties.velocityVersion}")
+        }
+    }
+
+    plugins.withType(JavaPlugin) {
+        def targetJavaVersion = JavaVersion.VERSION_11
+        sourceCompatibility = targetJavaVersion
+        targetCompatibility = targetJavaVersion
+
+        test {
+            onlyIf { project.properties.skipTests != 'true' }
+
+            def pathname = "/src/test/resources/testng.xml"
+
+            useTestNG() {
+                if (file("$projectDir$pathname").exists()) {
+                    suites pathname
+                }
+            }
+        }
+
+        tasks.withType(AbstractArchiveTask) {
+            preserveFileTimestamps = false
+            reproducibleFileOrder = true
+        }
+
+        if (project.properties.useClover == 'true' && !file("$projectDir/src/main/kotlin").exists()) {
+            project.apply plugin: 'com.bmuschko.clover'
+
+            dependencies {
+                clover "org.openclover:clover:${project.properties.cloverVersion}"
+            }
+
+            clover {
+                def tasks = []
+
+                if (project.properties.skipTests != 'true') {
+                    tasks.add('test')
+                }
+
+                testIncludes = ['**/*Test.java', '**/*Tests.java']
+                includes = ['**/net/arin/**/*.java']
+                includeTasks = tasks
+
+                report {
+                    html = true
+                    xml = true
+                }
+
+                if (project.properties.enforceCodeCoverage == 'true' &&
+                        project.properties.skipTests != 'true' &&
+                        project.hasProperty('codeCoveragePercentage')
+                ) {
+                    targetPercentage = "${project.properties.codeCoveragePercentage}%"
+                }
+            }
+
+            if (project.properties.skipTests != 'true') {
+                check.finalizedBy cloverGenerateReport
+                cloverGenerateReport.outputs.upToDateWhen { false }
+            }
+        }
+
+        compileJava {
+            options.compilerArgs << '-parameters'
+        }
+    }
+
+    plugins.withType(WarPlugin) {
+        def resourceProperties = [
+                projectVersion: version,
+                buildNumber   : project.properties.buildNumber,
+                seamDebug     : project.properties.seamDebug
+        ]
+
+        war.inputs.properties(resourceProperties)
+        processResources.inputs.properties(resourceProperties)
+
+        war {
+            filesMatching("**/components.**") {
+                expand resourceProperties
+            }
+        }
+
+        processResources {
+            filesMatching("**/components.**") {
+                expand resourceProperties
+            }
+        }
+
+        test {
+            systemProperty 'webapp.root', webAppDir
+        }
+    }
+
+    plugins.withType(MavenPublishPlugin) {
+        publishing {
+            repositories {
+                maven {
+                    credentials {
+                        username project.properties.nexusUsername
+                        password project.properties.nexusPassword
+                    }
+                    if (project.version.endsWith('-SNAPSHOT')) {
+                        url project.properties.mavenSnapshotRepository
+                    } else {
+                        url project.properties.mavenReleasesRepository
+                    }
+                }
+            }
+        }
+    }
+
+    tasks.withType(PublishToMavenRepository) {
+        if (project.properties.uploadArchivesAfterGlobalBuildSuccess == 'true') {
+            mustRunAfter rootProject.getTasksByName('build', true)
+        }
+    }
+}
+
+if (project.properties.uploadArchivesAfterGlobalBuildSuccess == 'true') {
+    project.getTasksByName('pushDockerImage', true).each {
+        it.mustRunAfter rootProject.getTasksByName('build', true)
+    }
+}
+
+clover {
+    report {
+        html = true
+        xml = true
+    }
+}
+
+dependencyCheck {
+    formats = ['XML', 'HTML']
+    analyzers {
+        assemblyEnabled = false
+        bundleAuditEnabled = false
+    }
+}
+
+task listAllDependencies {
+    dependsOn allprojects.collect { "$it.path:dependencies" }
+}
+
+task aggregateTestReport(type: TestReport) {
+    destinationDir = file("$buildDir/reports/allTests")
+    reportOn project.allprojects*.tasks*.withType(Test)
+}
+
+ext {
+    def imageName
+    if (project.hasProperty("imageName")) {
+        imageName = "${project.properties.imageName}"
+    } else {
+        imageName = 'arin-tp'
+    }
+
+    def imageVersion
+    if (project.hasProperty("imageVersion")) {
+        imageVersion = "${project.properties.imageVersion}"
+    } else {
+        if (!project.hasProperty("branch")) {
+            imageVersion = 'latest'
+        } else if (project.properties.branch == "master") {
+            imageVersion = 'master'
+        } else {
+            imageVersion = "f_${project.properties.branch}"
+        }
+    }
+
+    imageTag = "$imageName:$imageVersion"
+}
+
+task buildDockerImage() {
+    if (project.properties.skipTests != 'true') {
+        it.mustRunAfter rootProject.getTasksByName('test', true)
+    }
+    it.mustRunAfter rootProject.getTasksByName('build', true)
+
+    doFirst {
+        exec {
+            executable 'docker'
+            args 'build', '-t', imageTag, '.'
+        }
+    }
+}
+
+task pushDockerImage() {
+    dependsOn buildDockerImage
+    doFirst {
+        exec {
+            executable 'docker'
+            args 'push', imageTag
+        }
+    }
+}

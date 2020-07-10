@@ -1,0 +1,17 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  notAllowed
+  | element pocLinkRef {
+      attribute handle { \string } ?&
+      attribute function {
+           xsd:string "AD"   |
+           xsd:string "AB"   |
+           xsd:string "N"    |
+           xsd:string "T"    |
+           xsd:string "R"    |
+           xsd:string "D"
+      } &
+      attribute description { \string }?
+    }
+\string = xsd:string

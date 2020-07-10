@@ -1,0 +1,43 @@
+apply plugin: 'war'
+
+description = 'ARIN Template Processor'
+
+dependencies {
+    implementation project(':regcore_api')
+    implementation project(':template_processor_biz')
+    implementation project(':template_processor_utils')
+
+    implementation group: 'com.sun.mail', name: 'jakarta.mail', version: "${project.properties.jakartaMailVersion}"
+    implementation group: 'org.jboss.resteasy', name: 'jaxrs-api', version: "${project.properties.jaxrsApiVersion}"
+    implementation group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version: "${project.properties.resteasyVersion}"
+    implementation group: 'org.jboss.resteasy', name: 'resteasy-jaxb-provider', version: "${project.properties.resteasyVersion}"
+    implementation group: 'org.jboss.resteasy', name: 'async-http-servlet-3.0', version: "${project.properties.resteasyVersion}"
+    implementation group: 'org.apache.velocity', name: 'velocity', version: "${project.properties.velocityVersion}"
+    implementation group: 'org.bouncycastle', name: 'bcpg-jdk16', version: "${project.properties.bcpgJdk16Version}"
+    implementation group: 'com.google.guava', name: 'guava', version: "${project.properties.guavaVersion}"
+    implementation group: 'commons-lang', name: 'commons-lang', version: "${project.properties.commonsLangVersion}"
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: "${project.properties.commonsCollections4Version}"
+    implementation group: 'org.javassist', name: 'javassist', version: "${project.properties.javassistVersion}"
+    implementation group: 'commons-io', name: 'commons-io', version: "${project.properties.commonsIoVersion}"
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: "${project.properties.httpclientVersion}"
+    implementation group: 'commons-codec', name: 'commons-codec', version: "${project.properties.commonsCodecVersion}"
+    implementation group: 'javax.faces', name: 'jsf-api', version: "${project.properties.jsfApiVersion}"
+    implementation group: 'javax.faces', name: 'jsf-impl', version: "${project.properties.jsfImplVersion}"
+
+    testImplementation project(path: ':template_processor_utils', configuration: 'tests')
+
+    testImplementation group: 'org.testng', name: 'testng', version: "${project.properties.testngVersion}"
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: "${project.properties.mockitoVersion}"
+    testImplementation group: 'org.easymock', name: 'easymock', version: "${project.properties.easymockVersion}"
+    testImplementation group: 'dumbster', name: 'dumbster', version: "${project.properties.dumbsterVersion}"
+    testImplementation group: 'org.easymock', name: 'easymockclassextension', version: "${project.properties.easymockclassextensionVersion}"
+    testImplementation group: 'com.icegreen', name: 'greenmail', version: "${project.properties.greenmailVersion}"
+
+    providedCompile group: 'org.jboss.spec.javax.ejb', name: 'jboss-ejb-api_3.1_spec', version: "${project.properties.jbossEjbApi31SpecVersion}"
+    providedCompile group: 'org.jboss.logging', name: 'jboss-logging', version: "${project.properties.jbossLoggingVersion}"
+    providedCompile group: 'org.jboss.ejb3', name: 'jboss-ejb3-ext-api', version: "${project.properties.jbossEjb3ExtApiVersion}"
+}
+
+test {
+    systemProperty 'arin.template.processor.baseurl_public', 'https://account.arin.net/public'
+}

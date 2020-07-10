@@ -1,0 +1,28 @@
+#set( $action = $templateMessage.getTemplate().getAction() )
+#parse("email/greeting.vm")
+
+#if( $action == 'CREATE' )
+The Customer Handle for your customer is $!customerPayload.getHandle().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/customer/$!customerPayload.getHandle()
+
+The Net Handle for the reassigned network is $!netPayload.getNetHandle().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/net/$!netPayload.getNetHandle()
+#end
+#if( $action == 'MODIFY' )
+The Customer Handle for your customer is $!customerPayload.getHandle().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/customer/$!customerPayload.getHandle()
+
+The Net Handle for the reassigned network is $!netPayload.getNetHandle().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/net/$!netPayload.getNetHandle()
+#end
+#if( $action == 'REMOVE' )
+$!netPayload.getNetHandle() will be removed shortly.  PLEASE NOTE: the associated customer record has not been removed.  If you want to delete the customer record associated with the network, you will need to do so via a RESTful call.
+#end
+
+#parse("email/closing.vm")
+
+#parse("email/submittedTemplate.vm")

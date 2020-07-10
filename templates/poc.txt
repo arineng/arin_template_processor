@@ -1,0 +1,168 @@
+Template: ARIN-POC-5.0
+**  As of March 2011
+**  Detailed instructions are located below the template.
+
+00. API Key:
+
+01. Registration Action (N,M, or R):
+
+02. Existing POC Handle:
+** Skip field 02. if generating a new handle
+
+03. Contact Type (P or R): 
+04. Last Name or Role Account:
+05. First Name: 
+06. Middle Name:
+07. Company Name:
+08. Address:
+08. Address:
+09. City: 
+10. State/Province: 
+11. Postal Code: 
+12. Country Code:
+13. Office Phone Number: 
+14. Office Phone Number Extension: 
+15. E-mail Address:
+
+** OPTIONAL PHONE NUMBERS
+16. Mobile:
+17. Fax: 
+
+** OTHER OPTIONAL FIELDS
+18. Public Comments:
+
+END OF TEMPLATE
+
+If you would like assistance completing this template, please do
+not hesitate to contact ARIN's Registration Services Help Desk
+at +1 (703) 227-0660. We'll be glad to help you!
+
+-----------------------------CUT HERE ---------------------------
+
+TEMPLATE INSTRUCTIONS:
+
+Please copy and paste the text-based template into the body of an
+e-mail and send to hostmaster@arin.net with the subject line, "POC
+TEMPLATE". 
+
+Please ensure your e-mail client sends ARIN the message as plain 
+ASCII text, not as HTML.
+
+Please do not attach the template.
+
+IMPORTANT NOTE: Do not remove or modify the template header, i.e. 
+the line beginning with "Template:" or the footer, i.e. "END OF 
+TEMPLATE". Both are required for processing.
+
+
+00. An API Key is a string of characters you can use to identify 
+    yourself to ARIN. You must first set up an ARIN Online account 
+    and create your API Key. 
+	https://www.arin.net/public/register_1.xhtml 
+    If you are modifying or removing a POC record, your ARIN Online 
+    account must be linked to the POC. Find more information about API 
+    Keys at:
+	https://www.arin.net/features/api_keys.html
+
+01. This template allows you to register a new POC, modify information
+    for an existing POC or remove an existing POC not associated with
+    resources in ARIN's database. This registration action is required.
+    Valid values are:
+      N for New
+      M for Modify
+      R for Remove
+
+02. If you are modifying or removing an existing POC, the POC handle is
+    required for processing. If you are registering a new POC in ARIN's
+    Whois database, this field must be blank. If you are unsure of your
+    POC handle, search for your last name in ARIN's Whois database.
+
+03. A POC can be either a person or a role account. A role account is not 
+    associated with a particular person, but with an office, position or 
+    task and is usually shared by multiple people. Valid values are:
+	P or PERSON for Person
+	R or ROLE for Role
+    The Contact Type cannot be updated. If you are modifying a POC record,
+    this field should be left blank.
+
+04. If the POC is a role account, enter the entire role account name. 
+    For example:
+     Last Name or Role Account: Network Operations Center
+
+    If the POC is a person, enter only the last name. For example:
+     Last Name or Role Account: Smith
+
+    POC Name cannot be updated. If you are modifying a POC record,
+    this field should be left blank.
+
+05. If the Registration Action is New and the POC is a person, the first 
+    name is required. If the POC is a role account, the first name 
+    should be left blank. POC Name cannot be updated. If you are 
+    modifying a POC record, this field should be left blank.
+
+06. If the POC is a person and has a middle name or initial, provide it
+    in this field. If the POC is a role account, the middle name should 
+    be left blank. POC Name cannot be updated. If you are modifying a 
+    POC record, this field should be left blank.
+
+07. If the POC is a role, a company name is required. This will help
+    distinguish the Hostmaster from ABC Company from the Hostmaster at 
+    XYZ Company. It is optional for persons. If you are modifying a POC 
+    that is a person and would like to remove the company name, enter 
+    NONE in this field.
+
+08. Indicate the street address of the POC. (If you are modifying the 
+    street address of an existing POC, you must include all address 
+    lines.) Although the template provides only two address fields, 
+    you may duplicate field 08. as many times as necessary to capture 
+    the entire address.
+
+09. Indicate the city of the POC. 
+
+10. Indicate the two-letter abbreviation of the state or province of
+    the POC.
+
+11. Indicate the postal code of the POC.
+
+12. Indicate the ISO-3166 two-character country code of the POC. You can
+    find a complete listing of country codes at:
+     https://www.arin.net/knowledge/rirs/countries.html
+
+13. Provide the office telephone number of the POC. Only numbers and 
+    the characters + - () are valid. Do not include phone extensions 
+    and additional instructions in the phone number field.
+
+14. The phone extension field is free form and can include phone
+    extensions, as well as further instructions to help the caller. 
+    If you are modifying a POC record and would like to remove the 
+    phone extension, enter NONE in this field.
+
+15. Enter the e-mail address of the POC. RFC 2822 describes valid e-mail
+    addresses. At least one e-mail address is required to process a new
+    POC. To add a second e-mail address, duplicate field 15. and include
+    both the current e-mail address and the new e-mail address on the
+    template. To replace the current e-mail address, enter the new e-mail
+    address on this line.
+
+
+OPTIONAL PHONE NUMBERS:
+
+16. Provide the mobile telephone number of the POC. Only numbers and the 
+    characters + - () are valid. If you are modifying a POC record and 
+    would like to remove all mobile phone numbers, enter NONE in this field.
+
+17. Provide the fax telephone number of the POC. Only numbers and the
+    characters + - () are valid. If you are modifying a POC record and 
+    would like to remove all fax numbers, enter NONE in this field.
+       
+
+OTHER OPTIONAL FIELDS:
+       
+18. If there are any comments that you would like publicly displayed in     
+    ARIN's Whois, detail them here. All public comments must be operational 
+    in nature. All comments must be accurate. ARIN reserves the right to 
+    edit or remove public comments. 
+ 
+    Suggested comments are:
+         Public Comments: http://www.example.net
+         Public Comments: Standard NOC hours are 7am to 11pm EST

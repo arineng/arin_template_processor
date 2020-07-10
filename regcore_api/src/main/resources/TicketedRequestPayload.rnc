@@ -1,0 +1,10 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  (notAllowed
+  | element ticketedRequest {
+      ticket | net
+  })
+
+ticket = external "TicketPayload.rnc"
+net = external "NetPayload.rnc"

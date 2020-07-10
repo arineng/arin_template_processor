@@ -1,0 +1,74 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  message
+  | (notAllowed
+     | element ticket {
+         ( element closedDate { dateTime }? &
+           element createdDate { dateTime }? &
+           element flagged { \string }? &
+           (
+               element messages { message* }? |
+               element messageReferences { messageReference* }?
+           ) &
+           orgHandle? &
+           element resolvedDate { dateTime }? &
+           shared? &
+           element ticketNo { \string }? &
+           element updatedDate { dateTime }? &
+           element webTicketResolution {
+            xsd:string
+            # Possible Values for 'webTicketResolution'
+            # WITHDRAWN
+            # ABANDONED
+            # OTHER
+            # ANSWERED
+            # PROCESSED
+            # DENIED
+            # ACCEPTED
+            # DUPLICATE
+            # UNSUCCESSFUL
+           }? &
+           element webTicketStatus {
+            xsd:string
+            # Possible Values for 'webTicketStatus'
+            # CLOSED
+            # RESOLVED
+            # ANY
+            # PENDING_REVIEW
+            # PENDING_CUSTOMER_REVIEW
+            # IN_PROGRESS
+            # ASSIGNED
+            # PENDING_CONFIRMATION
+           }? &
+           element webTicketType {
+            xsd:string
+            # Possible Values for 'webTicketType'
+            # EDIT_ORG_NAME
+            # ORG_CREATE
+            # POC_RECOVERY
+            # ANY
+            # QUESTION
+            # ASSOCIATIONS_REPORT
+            # ORG_RECOVERY
+            # REASSIGNMENT_REPORT
+            # IPV4_SIMPLE_REASSIGN
+            # IPV4_DETAILED_REASSIGN
+            # IPV4_REALLOCATE
+            # IPV6_DETAILED_REASSIGN
+            # IPV6_REALLOCATE(
+            # NET_DELETE_REQUEST
+           }?
+         )
+         & external "utils/foreignElements.rnc"*
+       })
+  | attachment
+
+attachment = external "AttachmentPayload.rnc"
+attachmentReference = external "AttachmentReferencePayload.rnc"
+message = external "MessagePayload.rnc"
+messageReference = external "MessageReferencePayload.rnc"
+orgHandle = external "sharedTicket/orgHandle.rnc"
+shared = external "sharedTicket/shared.rnc"
+\string = xsd:string
+dateTime = \string

@@ -1,0 +1,9 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start = multiline
+multiline =
+    element line {
+        attribute number { xsd:integer },
+        \string
+    }*
+\string = xsd:string

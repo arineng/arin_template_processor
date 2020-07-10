@@ -1,0 +1,36 @@
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+apply from: "${rootDir}/gradle/common/testsJar.gradle"
+
+description = 'ARIN Reg-RWS API'
+
+dependencies {
+    implementation group: 'commons-lang', name: 'commons-lang', version: "${project.properties.commonsLangVersion}"
+    implementation group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version: "${project.properties.resteasyVersion}"
+    implementation group: 'org.jboss.resteasy', name: 'resteasy-jaxb-provider', version: "${project.properties.resteasyVersion}"
+
+    testImplementation group: 'org.testng', name: 'testng', version: "${project.properties.testngVersion}"
+    testImplementation group: 'org.easymock', name: 'easymock', version: "${project.properties.easymockVersion}"
+    testImplementation group: 'org.easymock', name: 'easymockclassextension', version: "${project.properties.easymockclassextensionVersion}"
+    testImplementation group: 'org.slf4j', name: 'slf4j-api', version: "${project.properties.slf4jApiVersion}"
+    testImplementation group: 'org.slf4j', name: 'slf4j-log4j12', version: "${project.properties.slf4jLog4j12Version}"
+}
+
+processResources {
+    def resourceProperties = [
+            projectVersion: version,
+            buildNumber   : project.properties.buildNumber
+    ]
+    processResources.inputs.properties(resourceProperties)
+    filesMatching('**/regcoreApi.properties') {
+        expand resourceProperties
+    }
+}
+
+publishing {
+    publications {
+        jar(MavenPublication) {
+            from components.java
+        }
+    }
+}

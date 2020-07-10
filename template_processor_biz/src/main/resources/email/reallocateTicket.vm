@@ -1,0 +1,17 @@
+Hello,
+
+The POC Handle for your POC is $!orgPayload.getAdminPoc().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/poc/$!orgPayload.getAdminPoc()
+
+The Organization Handle for your ORG is $!orgPayload.getOrgHandle().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/org/$!orgPayload.getOrgHandle()
+
+The request for the reallocated network has been assigned ticket number $ticketPayload.getTicketNo().
+
+#parse("email/ticketedRequestFooter.vm")
+
+#parse("email/closing.vm")
+
+#parse("email/submittedTemplate.vm")

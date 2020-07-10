@@ -1,0 +1,8 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  (notAllowed
+     | element collection { (phone | net)* })
+
+phone = external "PhonePayload.rnc"
+net = external "NetPayload.rnc"

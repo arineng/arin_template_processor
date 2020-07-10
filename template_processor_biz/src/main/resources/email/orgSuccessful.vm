@@ -1,0 +1,16 @@
+#set( $action = $templateMessage.getTemplate().getAction() )
+#parse("email/greeting.vm")
+
+#if( $action == 'MODIFY' )
+The Organization Handle for your ORG record is $!orgPayload.getOrgHandle().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/org/$!orgPayload.getOrgHandle()
+#end
+
+#if( $action == 'REMOVE' )
+$!orgPayload.getOrgHandle() will be removed shortly.
+#end
+
+#parse("email/closing.vm")
+
+#parse("email/submittedTemplate.vm")

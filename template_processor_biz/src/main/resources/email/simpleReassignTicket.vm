@@ -1,0 +1,13 @@
+Hello,
+
+The Customer Handle for your customer is $!customerPayload.getHandle().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/customer/$!customerPayload.getHandle()
+
+The request for the reassigned network has been assigned ticket number $ticketPayload.getTicketNo().
+
+#parse("email/ticketedRequestFooter.vm")
+
+#parse("email/closing.vm")
+
+#parse("email/submittedTemplate.vm")

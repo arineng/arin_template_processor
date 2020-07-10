@@ -1,0 +1,13 @@
+Hello,
+
+Your request to remove the network record for $netPayload.getNetHandle() has been assigned ticket number $ticketPayload.getTicketNo().
+
+Your request to delete the network and all its sub-delegated networks will be processed shortly.
+
+To access your messages, log in and choose Notifications, or visit:
+
+$!{publicBaseUrl}/notifications
+
+#parse("email/closing.vm")
+
+#parse("email/submittedTemplate.vm")

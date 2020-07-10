@@ -1,0 +1,33 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  notAllowed
+  | element netBlock {
+      ( element cidrLength { \string }? &
+        element description { \string }? &
+        element endAddress { \string }? &
+        element startAddress { \string }? &
+        element type {
+            xsd:string "IU" |
+            xsd:string "IR" |
+            xsd:string "AF" |
+            xsd:string "AP" |
+            xsd:string "AR" |
+            xsd:string "LN" |
+            xsd:string "RN" |
+            xsd:string "RD" |
+            xsd:string "PV" |
+            xsd:string "AV" |
+            xsd:string "RV" |
+            xsd:string "LX" |
+            xsd:string "PX" |
+            xsd:string "RX" |
+            xsd:string "FX" |
+            xsd:string "DA" |
+            xsd:string "DS" |
+            xsd:string "A"  |
+            xsd:string "S"  }?
+      )
+      & external "utils/foreignElements.rnc"*
+    }
+\string = xsd:string

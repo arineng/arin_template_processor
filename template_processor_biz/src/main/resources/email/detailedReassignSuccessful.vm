@@ -1,0 +1,17 @@
+#parse("email/greeting.vm")
+
+The POC Handle for your POC is $!orgPayload.getAdminPoc().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/poc/$!orgPayload.getAdminPoc()
+
+The Organization Handle for your ORG is $!orgPayload.getOrgHandle().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/org/$!orgPayload.getOrgHandle()
+
+The Net Handle for the reassigned network is $!netPayload.getNetHandle().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/net/$!netPayload.getNetHandle()
+
+#parse("email/closing.vm")
+
+#parse("email/submittedTemplate.vm")

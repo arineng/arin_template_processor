@@ -1,0 +1,21 @@
+<jboss-deployment-structure>
+    <deployment>
+        <exclusions>
+            <module name="javax.faces.api" slot="main"/>
+            <module name="com.sun.jsf-impl" slot="main"/>
+            <module name="org.jboss.as.jsf-injection" slot="main"/>
+            <module name="org.apache.commons.logging" slot="main"/>
+            <module name="org.slf4j" slot="main"/>
+        </exclusions>
+        <exclude-subsystems>
+            <subsystem name="jaxrs"/>
+        </exclude-subsystems>
+        <dependencies>
+            <module name="org.apache.log4j" export="true"/>
+        </dependencies>
+
+        <resources>
+            <resource-root path="WEB-INF/lib/bcprov-jdk16-1.45.jar" use-physical-code-source="true"/>
+        </resources>
+    </deployment>
+</jboss-deployment-structure>

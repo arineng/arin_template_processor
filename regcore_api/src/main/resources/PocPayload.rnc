@@ -1,0 +1,32 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  phone
+  | (notAllowed
+     | element poc {
+         ( element city { \string }? &
+           element companyName { \string }? &
+           element contactType {
+             xsd:string "PERSON" | xsd:string "ROLE"
+           }? &
+           external "CountryPayload.rnc" &
+           element emails {
+             element email { \string }*
+           }? &
+           element firstName { \string }? &
+           element lastModified { dateTime }? &
+           element lastName { \string }? &
+           element middleName { \string }? &
+           element phones { phone* }? &
+           element handle { \string }? &
+           element postalCode { \string }? &
+           element comment { external "utils/multiline.rnc" }? &
+           element registrationDate { dateTime }? &
+           element iso3166-2 { \string }? &
+           element streetAddress { external "utils/multiline.rnc" }?
+         )
+         & external "utils/foreignElements.rnc"*
+       })
+phone = external "PhonePayload.rnc"
+\string = xsd:string
+dateTime = \string

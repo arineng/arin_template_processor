@@ -1,0 +1,16 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  notAllowed
+  | element phone {
+      ( element extension { \string }? &
+        element number { \string }? &
+        element type {
+          element description { \string }? &
+          # Valid type values are: O, F, M
+          element code { \string }?
+        }?
+      )
+      & external "utils/foreignElements.rnc"*
+    }
+\string = xsd:string

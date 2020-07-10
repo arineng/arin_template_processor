@@ -1,0 +1,23 @@
+apply plugin: 'java-library'
+
+description = 'ARIN Template Processor Business Layer'
+
+dependencies {
+    implementation project(':regcore_api')
+    implementation project(':template_processor_utils')
+
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: "${project.properties.slf4jApiVersion}"
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: "${project.properties.slf4jLog4j12Version}"
+    implementation group: 'org.jboss.resteasy', name: 'jaxrs-api', version: "${project.properties.jaxrsApiVersion}"
+    implementation group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version: "${project.properties.resteasyVersion}"
+    implementation group: 'org.jboss.resteasy', name: 'resteasy-jaxb-provider', version: "${project.properties.resteasyVersion}"
+    implementation group: 'org.apache.velocity', name: 'velocity', version: "${project.properties.velocityVersion}"
+
+    testImplementation project(path: ':template_processor_utils', configuration: 'tests')
+
+    testImplementation group: 'org.testng', name: 'testng', version: "${project.properties.testngVersion}"
+
+    compileOnly group: 'com.sun.mail', name: 'jakarta.mail', version: "${project.properties.jakartaMailVersion}"
+    compileOnly group: 'com.google.guava', name: 'guava', version: "${project.properties.guavaVersion}"
+    compileOnly group: 'commons-lang', name: 'commons-lang', version: "${project.properties.commonsLangVersion}"
+}

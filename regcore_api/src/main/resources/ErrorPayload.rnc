@@ -1,0 +1,25 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  (notAllowed
+   | element error {
+       ( element components { component* }? &
+         element additionalInfo {
+           element message { \string }*
+         }? &
+         element message { \string }? &
+         element code { \string }?
+       )
+       & external "utils/foreignElements.rnc"*
+     })
+  | component
+
+component =
+  notAllowed
+  | element component {
+      ( element message { \string }? &
+        element name { \string }?
+      )
+      & external "utils/foreignElements.rnc"*
+    }
+\string = xsd:string

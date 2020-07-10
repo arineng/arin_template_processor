@@ -1,0 +1,21 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  notAllowed
+  | element customer {
+      ( element city { \string }? &
+        external "CountryPayload.rnc" &
+        element handle { \string }? &
+        element customerName { \string }? &
+        element parentOrgHandle { \string }? &
+        element postalCode { \string }? &
+        element privateCustomer { xsd:boolean }? &
+        element comment { external "utils/multiline.rnc" }? &
+        element registrationDate { dateTime }? &
+        element iso3166-2 { \string }? &
+        element streetAddress { external "utils/multiline.rnc" }?
+      )
+      & external "utils/foreignElements.rnc"*
+    }
+\string = xsd:string
+dateTime = \string

@@ -1,0 +1,29 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+ (notAllowed
+  | element org {
+      ( element city { \string }? &
+        external "CountryPayload.rnc" &
+        element dbaName { \string }? &
+        element pocLinks { pocLink* }? &
+        element handle { \string }? &
+        element orgName { \string }? &
+        element orgUrl { \string }? &
+        element postalCode { \string }? &
+        element comment { external "utils/multiline.rnc" }? &
+        element registrationDate { dateTime }? &
+        element iso3166-2 { \string }? &
+        element streetAddress { external "utils/multiline.rnc" }? &
+        element taxId { \string }? &
+        ( element messages { message* }? | element messageReferences { messageReference* }? )
+      )
+      & external "utils/foreignElements.rnc"*
+    })
+  | pocLink
+
+\string = xsd:string
+pocLink = external "utils/pocLinkRef.rnc"
+dateTime = \string
+message = external "MessagePayload.rnc"
+messageReference = external "MessageReferencePayload.rnc"

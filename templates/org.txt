@@ -1,0 +1,205 @@
+Template: ARIN-ORG-5.1
+** As of September 2011
+** Detailed instructions are located below the template.
+
+00. API Key:
+
+01. Registration Action (N,M, or R):
+
+** IF REQUESTING A NEW ORG ID, LEAVE FIELD 02. BLANK
+02. Existing OrgID:
+
+03. Organization's Legal Name:
+04. Organization's D/B/A:
+05. Business Tax ID Number (DO NOT LIST SSN): 
+06. Org Address:
+06. Org Address:
+07. Org City:
+08. Org State/Province:
+09. Org Postal Code:
+10. Org Country Code:
+11. Admin POC Handle:
+12. Tech POC Handle:
+13. Abuse POC Handle:
+
+** OPTIONAL POC HANDLE
+14. NOC POC Handle:
+
+** OTHER OPTIONAL FIELDS
+15. Referral Server:
+16. Public Comments:
+17. Additional Information:
+
+END OF TEMPLATE
+
+If you would like assistance completing this template, please do
+not hesitate to contact ARIN's Registration Services Help Desk
+at +1 (703) 227-0660. We'll be glad to help you!
+
+-----------------------------CUT HERE ---------------------------
+
+TEMPLATE INSTRUCTIONS:
+
+Please copy and paste the text-based template into the body of an
+e-mail and send to hostmaster@arin.net with the subject line,
+"ORGANIZATION TEMPLATE". 
+
+Please ensure your e-mail client sends ARIN the message as plain 
+ASCII text, not as HTML.
+
+Please do not attach the template.
+
+IMPORTANT NOTE: Do not remove or modify the template header, i.e. 
+the line beginning with "Template:" or the footer, i.e. "END OF 
+TEMPLATE". Both are required for processing.
+
+00. An API Key is a string of characters you can use to identify 
+    yourself to ARIN. You must first set up an ARIN Online account 
+    and create your API Key. 
+	https://www.arin.net/public/register_1.xhtml
+    If you are modifying or removing an Org ID, your ARIN Online 
+    account must be linked to a POC authorized to make the request. 
+    Find more information about API Keys at:
+        https://www.arin.net/features/api_keys.html
+
+01. This template allows you to register a new Org ID, modify information
+    for an existing Org ID or remove an existing Org ID not associated 
+    with resources in ARIN's database. This registration action is 
+    required. Valid values are:
+      N for New
+      M for Modify
+      R for Remove
+
+02. If you are modifying or removing an existing Org ID, the handle is
+    required for processing. If you are registering a new Org ID in 
+    ARIN's Whois database, this field must be blank. If you are unsure of 
+    the handle, search for the company's name in ARIN's Whois database.
+
+03. Provide the legal name of the organization as it is registered with
+    local, regional or national authorities. ARIN will require any contracts
+    to be signed with this legally registered business name if you become an
+    ARIN customer.
+ 
+    Org Legal Name cannot be updated via this template. If your organization
+    changes its legal name, you should update your Org ID using the Request 
+    Name Change function within ARIN Online. For more information on name 
+    changes please reference:
+        https://www.arin.net/resources/request/org.html#name_change
+
+04. If applicable, provide the:
+
+       - fictitious business name
+       - doing business as (D/B/A) name
+       - operating as (O/A) name
+
+    ... of the organization as it is registered with local or
+    regional authorities. This is not a required field.
+
+    If you provide data for this field, it will replace the 
+    Organization's Legal Name for display in ARIN's Whois. If you
+    do not provide data for this field, the data you entered in 
+    field 03. will display in ARIN's Whois.
+
+    Org D/B/A Name cannot be updated. If you are modifying an Org record,
+    this field should be left blank.
+
+05. Provide your organization's business tax ID, as provided to
+    you by national authorities. DO NOT LIST A SOCIAL SECURITY
+    NUMBER OR A SOCIAL INSURANCE NUMBER. 
+
+    In the United States, this field should contain your organization's
+    Federal Employer Identification Number (FEIN). If your 
+    organization's FEIN is a Social Security Number, DO NOT FILL OUT 
+    THIS FIELD. ARIN does not want to know your SSN!
+
+    In Canada, this field should contain your Canadian Corporate
+    Number, which is your 9-digit Business Number plus your 6-digit
+    Revenue Account Number.
+
+    If you are unsure of what data to provide for this question,
+    leave it blank.
+
+06. Indicate the street address for the organization. (If you are 
+    updating the street address of an existing Org ID, you must include 
+    all address lines.) Although the template provides only two address 
+    fields, you may duplicate field 06. as many times as necessary to 
+    capture the entire address. 
+
+07. Indicate the city of the organization.
+
+08. Indicate the two-letter abbreviation of the state or province of 
+    the organization.
+
+09. Provide the postal code of the organization.
+
+10. Provide the ISO-3166 two-character country code of the
+    organization. You can find a complete listing of country codes at:
+     https://www.arin.net/knowledge/rirs/countries.html
+
+11. Indicate the ARIN POC handle of the person in the 
+    organization responsible for maintaining the Org ID record.
+
+    If you have not yet registered a POC handle for this person,
+    please submit a POC template. You cannot register a new POC
+    handle with this form.
+
+12. Indicate the ARIN POC handle of a contact responsible for
+    the technical aspects of maintaining your network.
+
+    If you have not yet registered a POC handle for this person,
+    please submit a POC template. You cannot register a new POC  
+    handle with this form.
+
+    Although the template provides only one Tech POC field, you may 
+    duplicate field 12. to list multiple Tech POCs.
+
+13. Indicate the ARIN POC handle of a contact responsible for 
+    handling operational aspects of the acceptable or appropriate 
+    uses of the allocated network. The abuse POC may not make
+    modifications to any registration records.
+
+    If you have not yet registered a POC handle for this person,
+    please submit a POC template. You cannot register a new POC
+    handle with this form.
+
+    Although the template provides only one Abuse POC field, you may 
+    duplicate field 13. to list multiple Abuse POCs.
+
+OPTIONAL FIELDS:
+
+14. Indicate the ARIN POC handle for your NOC. The NOC POC may not
+    make modifications to any registration records.
+
+    If you have not yet registered a POC handle for this person,
+    please submit a POC template. You cannot register a new POC
+    handle with this form.
+
+    Although the template provides only one NOC POC field, you may 
+    duplicate field 12. to list multiple NOC POCs.
+
+    If you are modifying an Org record and would like to remove all 
+    NOC POCs, enter NONE in this field.
+
+15. If your organization runs a publicly-accessible rwhois server,
+    please indicate its hostname and port number. Please enter in the 
+    format of:
+     rwhois://hostname:port
+
+    If you do not run an rwhois server, please leave this field blank.
+
+    If you are modifying an Org record and would like to remove the 
+    rwhois server, enter NONE in this field.
+
+16. If there are any comments that you would like publicly displayed in     
+    ARIN's Whois, detail them here. All public comments must be operational 
+    in nature. All comments must be accurate. ARIN reserves the right to 
+    edit or remove public comments. 
+ 
+    Suggested comments are:
+         Public Comments: http://www.example.net
+         Public Comments: Standard NOC hours are 7am to 11pm EST
+
+17. Use this section to provide additional information to ARIN.
+    If you are attaching any supporting documentation to your
+    e-mail, please indicate this here. If you are modifying or 
+    removing an Org record, this field should be left blank.

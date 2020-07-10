@@ -1,0 +1,7 @@
+# See: http://books.xmlschemata.org/relaxng/relax-CHP-11-SECT-4.html
+
+start = anything
+anything =
+  (element * { anything }
+   | attribute * { text }
+   | text)*

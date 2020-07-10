@@ -1,0 +1,13 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  notAllowed
+  | element messageReference {
+       ( element messageId{ xsd:int } &
+         element attachmentReferences { attachmentReference* }?
+       )
+       & external "utils/foreignElements.rnc"*
+     }
+
+\string = xsd:string
+attachmentReference = external "AttachmentReferencePayload.rnc"

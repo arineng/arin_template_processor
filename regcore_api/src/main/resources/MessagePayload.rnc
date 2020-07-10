@@ -1,0 +1,29 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  (notAllowed
+   | element message {
+       (
+         ( element attachments { attachment* }? |
+           element attachmentReferences { attachmentReference* }?
+         ) &
+         element category {
+           xsd:string
+           # Possible Values for 'category':
+           #"JUSTIFICATION"
+           #"NONE"
+         }? &
+         element subject { \string }? &
+         element text { external "utils/multiline.rnc" }? &
+         messageId? &
+         createdDate?
+       )
+       & external "utils/foreignElements.rnc"*
+     })
+  | attachment
+
+\string = xsd:string
+attachment = external "AttachmentPayload.rnc"
+attachmentReference = external "AttachmentReferencePayload.rnc"
+messageId = external "utils/messageId.rnc"
+createdDate = external "utils/createdDate.rnc"

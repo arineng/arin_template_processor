@@ -1,0 +1,25 @@
+apply plugin: 'java-library'
+apply from: "${rootDir}/gradle/common/testsJar.gradle"
+
+description = 'ARIN Template Processor Utils'
+
+configurations {
+    providedCompile
+}
+
+// Unlike a war, explicitly configure providedCompile for a jar.
+sourceSets.main.compileClasspath += configurations.providedCompile
+sourceSets.test.compileClasspath += configurations.providedCompile
+sourceSets.test.runtimeClasspath += configurations.providedCompile
+
+dependencies {
+    api group: 'commons-io', name: 'commons-io', version: "${project.properties.commonsIoVersion}"
+    api group: 'com.google.guava', name: 'guava', version: "${project.properties.guavaVersion}"
+    api group: 'org.apache.velocity', name: 'velocity', version: "${project.properties.velocityVersion}"
+    api group: 'org.apache.commons', name: 'commons-collections4', version: "${project.properties.commonsCollections4Version}"
+    api group: 'org.springframework', name: 'spring-core', version: "${project.properties.springVersion}"
+    api group: 'org.slf4j', name: 'slf4j-api', version: "${project.properties.slf4jApiVersion}"
+
+    providedCompile group: 'com.sun.mail', name: 'jakarta.mail', version: "${project.properties.jakartaMailVersion}"
+    providedCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: "${project.properties.slf4jLog4j12Version}"
+}

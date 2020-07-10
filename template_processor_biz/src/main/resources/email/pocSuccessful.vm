@@ -1,0 +1,15 @@
+#set( $action = $templateMessage.getTemplate().getAction() )
+#parse("email/greeting.vm")
+
+#if( $action == 'CREATE' || $action == 'MODIFY' )
+The POC handle for your POC record is $pocPayload.getPocHandle().  The record will be visible in ARIN's Whois shortly and can be accessed via the link below:
+
+http://whois.arin.net/rest/poc/$pocPayload.getPocHandle()
+#end
+#if( $action == 'REMOVE' )
+$pocPayload.getPocHandle() will be removed shortly.
+#end
+
+#parse("email/closing.vm")
+
+#parse("email/submittedTemplate.vm")

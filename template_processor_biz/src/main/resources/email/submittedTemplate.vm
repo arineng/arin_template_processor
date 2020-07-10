@@ -1,0 +1,7 @@
+
+#if($templateMessage)
+#if($templateMessage.getReplyText())
+This message is in response to the following template:
+$templateMessage.getReplyText()
+#end
+#end

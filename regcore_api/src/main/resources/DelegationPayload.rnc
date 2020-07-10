@@ -1,0 +1,39 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+namespace ns2 = "http://www.arin.net/regrws/ttl/v1"
+
+start =
+  (notAllowed
+   | element delegation {
+       ( element name { \string }? &
+         element nameservers { nameserver* }? &
+         element delegationKeys { delegationKey* }?
+       )
+       & external "utils/foreignElements.rnc"*
+     })
+  | delegationKey
+  | nameserver
+
+delegationKey =
+  notAllowed
+  | element delegationKey {
+      element algorithm {
+        attribute name { \string }?,
+        \string }? &
+      element digest { \string }? &
+      element ns2:ttl { \string }? &
+      element digestType {
+        attribute name { \string }?,
+        \string }? &
+      element keyTag { \string }?
+    }
+
+nameserver =
+    notAllowed
+    | element nameserver {
+        attribute ns2:ttl{ \string }? &
+        \string
+    }
+
+\string = xsd:string
+integer = xsd:integer
+dateTime = \string

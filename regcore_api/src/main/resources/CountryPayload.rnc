@@ -1,0 +1,11 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  element iso3166-1 {
+    ( element code2 { xsd:string }? &
+      element code3 { xsd:string }? &
+      element name { xsd:string }? &
+      element e164 { xsd:string }?
+    )
+    & external "utils/foreignElements.rnc"*
+  }?

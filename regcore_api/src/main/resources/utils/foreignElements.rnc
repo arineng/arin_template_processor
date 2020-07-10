@@ -1,0 +1,11 @@
+# See: http://books.xmlschemata.org/relaxng/relax-CHP-11-SECT-4.html
+
+namespace local = ""
+namespace ns1 = "http://www.arin.net/regrws/core/v1"
+namespace ns2 = "http://www.arin.net/regrws/messages/v1"
+namespace ns3 = "http://www.arin.net/regrws/rpki/v1"
+namespace ns4 = "http://www.arin.net/regrws/shared-ticket/v1"
+
+start = foreign-elements
+foreign-elements =
+  element * - (local:* | ns1:* | ns2:* | ns3:* | ns4:* ) { external "anything.rnc" }*

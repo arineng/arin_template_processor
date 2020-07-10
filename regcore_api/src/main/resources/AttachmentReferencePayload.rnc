@@ -1,0 +1,11 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  notAllowed
+  | element attachmentReference {
+      ( element attachmentId { \string } &
+        element attachmentFilename { \string }
+      )
+      & external "utils/foreignElements.rnc"*
+    }
+\string = xsd:string { minLength = "1" }

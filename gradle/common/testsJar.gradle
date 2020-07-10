@@ -1,0 +1,22 @@
+configurations {
+    tests
+}
+
+task testsJar(type: Jar, dependsOn: testClasses) {
+    archiveClassifier.set('tests')
+    archiveBaseName.set(project.name)
+    from(sourceSets.test.output) {
+        exclude '**/WEB-INF'
+    }
+    doFirst {
+        manifest {
+            attributes(
+                    "Class-Path": configurations.compileClasspath.collect { it.getName() }.join(' ')
+            )
+        }
+    }
+}
+
+artifacts {
+    tests testsJar
+}

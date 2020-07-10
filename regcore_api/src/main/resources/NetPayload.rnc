@@ -1,0 +1,34 @@
+default namespace = "http://www.arin.net/regrws/core/v1"
+
+start =
+  (notAllowed
+   | element net {
+       ( element customerHandle { \string }? &
+         customer? &
+         element netBlocks { netBlock* }? &
+         element handle { \string }? &
+         element netName { \string }? &
+         element orgHandle { \string }? &
+         element originASes {
+           element originAS { \string }*
+         }? &
+         element parentNetHandle { \string }? &
+         element registrationDate { dateTime }? &
+         element pocLinks { pocLink* }? &
+         element version { "4" | "6" }? &
+         element comment { external "utils/multiline.rnc" }? &
+         ( element messages { message* }? | element messageReferences { messageReference* }? )
+       )
+       & external "utils/foreignElements.rnc"*       
+     })
+  | netBlock
+  | pocLink
+
+customer = external "CustomerPayload.rnc"
+message = external "MessagePayload.rnc"
+messageReference = external "MessageReferencePayload.rnc"
+netBlock = external "NetBlockPayload.rnc"
+pocLink = external "utils/pocLinkRef.rnc"
+\string = xsd:string
+integer = xsd:integer
+dateTime = \string

@@ -1,0 +1,86 @@
+Template: ARIN-REASSIGN-DETAILED-5.3
+**  As of November 2019
+**  Detailed instructions are located below the template.
+
+00. API Key:
+
+01. Downstream Org ID:
+
+** Fields 02 - 19 have been deprecated in accordance 
+** with community adopted policies.                  
+
+** NETWORK SECTION
+20. IP Address and Prefix or Range: 
+21. Network Name:
+22. Origin AS:
+
+** OPTIONAL FIELDS
+23. Public Comments:
+24. Additional Information:
+
+END OF TEMPLATE
+
+If you would like assistance completing this template, please do
+not hesitate to contact ARIN's Registration Services help desk
+at +1 703.227.0660. We'll be glad to help you!
+
+-----------------------------CUT HERE ---------------------------
+
+TEMPLATE INSTRUCTIONS:
+
+Please copy and paste the text-based template into the body of an
+e-mail and send to hostmaster@arin.net with the subject line, 
+"REASSIGN DETAILED". 
+
+Please ensure your e-mail client sends ARIN the message as plain 
+ASCII text, not as HTML.
+
+Please do not attach the template.
+
+IMPORTANT NOTE: Do not remove or modify the template header, i.e. 
+the line beginning with "Template:" or the footer, i.e. "END OF 
+TEMPLATE". Both are required for processing.
+
+
+00. An API Key is a string of characters you can use to identify 
+    yourself to ARIN. You must first set up an ARIN Online account 
+    and create your API Key. 
+	https://account.arin.net/public/accountSetup.xhtml
+
+    Your ARIN Online account must be linked to a POC authorized to 
+    make the request. Find more information about API Keys at:
+	https://www.arin.net/reference/materials/security/api_keys/
+
+01. Please specify the Org ID for the downstream organization to whom
+    you are reallocating IP addresses then skip to field 20.
+    
+02. – 19. Deprecated in accordance with community adopted policies.
+
+NETWORK SECTION:
+
+20. Indicate the network to be reassigned to the organization. Valid 
+    values are:
+     10.0.0.0/24
+     10.0.0.0 - 10.0.0.255
+
+21. Supply a short name consisting of a combination of up to 50 letters 
+    and/or numbers. You may use a dash (-) as part of the network name,
+    but no other special characters, such as periods or underscores.
+
+22. List all AS numbers from which the network may originate. 
+    You can list as many AS numbers as necessary. You must 
+    separate multiple AS numbers with a comma. You may not list 
+    AS number ranges; only list individual AS numbers.
+
+OPTIONAL FIELDS:
+
+23. If there are any comments that you would like publicly displayed in     
+    ARIN's Whois, detail them here. All public comments must be operational 
+    in nature. All comments must be accurate. ARIN reserves the right to 
+    edit or remove public comments. 
+ 
+    Suggested comments are:
+         Public Comments: http://www.example.net
+         Public Comments: Standard NOC hours are 7am to 11pm EST
+
+24. Use this section to provide additional information to ARIN.

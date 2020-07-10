@@ -1,0 +1,3 @@
+default namespace = "http://www.arin.net/regrws/shared-ticket/v1"
+
+start = element shared { xsd:boolean }

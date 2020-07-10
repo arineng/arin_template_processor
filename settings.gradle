@@ -1,0 +1,6 @@
+rootProject.name = "ostp"
+
+include 'regcore_api'
+include 'template_processor'
+include 'template_processor_biz'
+include 'template_processor_utils'
