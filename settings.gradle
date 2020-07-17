@@ -1,6 +1,6 @@
 rootProject.name = "arin_template_processsor"
 
-include 'regcore_api'
+include 'reg_rws_api'
 include 'template_processor'
 include 'template_processor_biz'
 include 'template_processor_utils'

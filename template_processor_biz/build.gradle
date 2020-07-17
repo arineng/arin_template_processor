@@ -3,7 +3,7 @@ apply plugin: 'java-library'
 description = 'ARIN Template Processor Business Layer'
 
 dependencies {
-    implementation project(':regcore_api')
+    implementation project(':reg_rws_api')
     implementation project(':template_processor_utils')
 
     implementation group: 'org.slf4j', name: 'slf4j-api', version: "${project.properties.slf4jApiVersion}"

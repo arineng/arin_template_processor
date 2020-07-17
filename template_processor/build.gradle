@@ -3,7 +3,7 @@ apply plugin: 'war'
 description = 'ARIN Template Processor'
 
 dependencies {
-    implementation project(':regcore_api')
+    implementation project(':reg_rws_api')
     implementation project(':template_processor_biz')
     implementation project(':template_processor_utils')
 
