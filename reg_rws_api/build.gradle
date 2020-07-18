@@ -1,5 +1,4 @@
 apply plugin: 'java-library'
-apply plugin: 'maven-publish'
 apply from: "${rootDir}/gradle/common/testsJar.gradle"
 
 description = 'ARIN Reg-RWS API'
@@ -24,13 +23,5 @@ processResources {
     processResources.inputs.properties(resourceProperties)
     filesMatching('**/regcoreApi.properties') {
         expand resourceProperties
-    }
-}
-
-publishing {
-    publications {
-        jar(MavenPublication) {
-            from components.java
-        }
     }
 }

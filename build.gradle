@@ -159,30 +159,6 @@ allprojects {
             systemProperty 'webapp.root', webAppDir
         }
     }
-
-    plugins.withType(MavenPublishPlugin) {
-        publishing {
-            repositories {
-                maven {
-                    credentials {
-                        username project.properties.nexusUsername
-                        password project.properties.nexusPassword
-                    }
-                    if (project.version.endsWith('-SNAPSHOT')) {
-                        url project.properties.mavenSnapshotRepository
-                    } else {
-                        url project.properties.mavenReleasesRepository
-                    }
-                }
-            }
-        }
-    }
-
-    tasks.withType(PublishToMavenRepository) {
-        if (project.properties.uploadArchivesAfterGlobalBuildSuccess == 'true') {
-            mustRunAfter rootProject.getTasksByName('build', true)
-        }
-    }
 }
 
 if (project.properties.uploadArchivesAfterGlobalBuildSuccess == 'true') {
