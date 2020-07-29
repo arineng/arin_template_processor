@@ -7,7 +7,7 @@ import net.arin.tp.api.payload.TicketPayload;
 import net.arin.tp.api.payload.TicketedRequestPayload;
 import net.arin.tp.api.utils.CollectionUtils;
 import net.arin.tp.processor.BaseTest;
-import net.arin.tp.processor.exception.TemplateRequiresReviewException;
+import net.arin.tp.processor.exception.TemplateException;
 import net.arin.tp.processor.message.MailMessage;
 import net.arin.tp.processor.message.TemplateMessage;
 import net.arin.tp.processor.template.IPV4NetModifyTemplateV5Impl;
@@ -96,7 +96,7 @@ public class NetModifyTransformerTest extends BaseTest
             Throwable throwable = re.getCause();
             if ( !( throwable instanceof JAXBUnmarshalException ) )
             {
-                Assert.assertEquals( re.getCause().getClass(), TemplateRequiresReviewException.class );
+                Assert.assertEquals( re.getCause().getClass(), TemplateException.class );
             }
         }
     }

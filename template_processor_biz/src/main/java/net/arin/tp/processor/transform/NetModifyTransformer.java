@@ -9,7 +9,6 @@ import net.arin.tp.api.payload.TicketedRequestPayload;
 import net.arin.tp.api.service.NetService;
 import net.arin.tp.processor.exception.RESTResponseFailure;
 import net.arin.tp.processor.exception.TemplateException;
-import net.arin.tp.processor.exception.TemplateRequiresReviewException;
 import net.arin.tp.processor.message.TemplateMessage;
 import net.arin.tp.processor.response.Response;
 import net.arin.tp.processor.template.NetModifyTemplateImpl;
@@ -132,7 +131,7 @@ public class NetModifyTransformer extends NetTransformer
         }
         else
         {
-            throw new TemplateRequiresReviewException();
+            throw new TemplateException( MessageBundle.NET_MOD_TEMPLATE_INVALID_REMOVE );
         }
 
         return response;
@@ -146,11 +145,7 @@ public class NetModifyTransformer extends NetTransformer
         // is confined to:
         if ( results.size() > 1 )
         {
-            log.info( "Multiple networks found for IP range " + start + "-" + end );
-
-            // Throwing exception up the stack that will be caught by the Transformer and TemplateProcessor and handled
-            // appropriately.
-            throw new TemplateRequiresReviewException();
+            throw new TemplateException( MessageBundle.NET_MOD_TEMPLATE_MULTIPLE_NETS_FOUND );
         }
 
         return results.get( 0 );

@@ -2,7 +2,6 @@ package net.arin.tp.processor.transform;
 
 import net.arin.tp.processor.exception.RESTResponseFailure;
 import net.arin.tp.processor.exception.TemplateException;
-import net.arin.tp.processor.exception.TemplateRequiresReviewException;
 import net.arin.tp.processor.message.TemplateMessage;
 import net.arin.tp.processor.response.Response;
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
@@ -56,11 +55,6 @@ public abstract class Transformer
             log.info( "Completed template transform" );
             send( response );
         }
-        catch ( TemplateRequiresReviewException e )
-        {
-            log.info( "Template requires review" );
-            throw e;
-        }
         catch ( RESTResponseFailure e )
         {
             log.info( "Reg-RWS request failed: " + e.getPayload().getMessage() );
@@ -77,7 +71,7 @@ public abstract class Transformer
         {
             log.error( "Error occurred while processing template", e );
             Message response = Response.generalFailure( message,
-                    "An error occurred while processing your template. Please contact us." );
+                    "An error occurred while processing your template." );
             send( response );
         }
     }

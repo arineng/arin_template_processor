@@ -4,7 +4,6 @@ import net.arin.tp.utils.TemplateProcessorProperties;
 import net.arin.tp.processor.Resolver;
 import net.arin.tp.processor.action.converter.MailToTemplate;
 import net.arin.tp.processor.action.converter.MessageConversionException;
-import net.arin.tp.processor.exception.TemplateRequiresReviewException;
 import net.arin.tp.processor.message.MailMessage;
 import net.arin.tp.processor.message.TemplateMessage;
 import net.arin.tp.processor.response.Response;
@@ -367,11 +366,6 @@ public class Processor
                 {
                     log.warn( "Unsupported template: " + templateName );
                 }
-            }
-            catch ( TemplateRequiresReviewException e )
-            {
-                log.info( "", e );
-                logTemplateMessage( templateMessage );
             }
             catch ( RuntimeException e )
             {
