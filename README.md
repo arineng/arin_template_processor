@@ -100,11 +100,11 @@ command:
 
 **Step 2:** Run the image by entering the following command:
 
-    docker run -ti --env-file=<full path of .env file> <image name>:<image version>
+    docker run -ti --env-file=<full file path> <image name>:<image version>
 
 ## Configuring the Docker Container
 
-You can configure the TP Docker container by setting its environment variables in a `.env` file (see the
+You can configure the TP Docker container by setting its environment variables in a file (see the
 [config/.env](./config/.env) file for a sample) and then using the `--env-file` option. You can also use the `--env`
 option to set these variables. The `--env-file` option is recommended over the `--env` option because passing
 environment variables on the command line can sometimes be problematic, especially for values with whitespace
@@ -161,7 +161,7 @@ have a development SMTP server to receive email templates and send TP responses,
 test using OT&E, set the `TP_REGRWS_URL` environment variable to `https://reg.ote.arin.net/rest`. Then, you can build
 and run the TP code on your machine using the `run.sh` script by entering the following command:
 
-    ./run.sh --env-file=<full path of dev .env file>
+    ./run.sh --env-file=<full file path>
 
 This brings up a Docker container named `arin-tp` that logs its activity to `stdout` (in the terminal window). You can
 then send a relevant test email template and observe the log for the TP response. You can further investigate by logging
