@@ -38,8 +38,8 @@ Before building the TP software, install:
 
 **Step 1:** Get the source code by entering the following commands in your terminal window:
 
-    git clone https://github.com/arineng/arin_template_processsor.git
-    cd arin_template_processsor
+    git clone https://github.com/arineng/arin_template_processor.git
+    cd arin_template_processor
 
 **Step 2:** Build the software by entering the following command:
 

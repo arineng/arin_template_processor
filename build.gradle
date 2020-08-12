@@ -4,7 +4,10 @@ assert Jvm.current().javaVersion >= JavaVersion.VERSION_11: 'This project requir
 
 buildscript {
     repositories {
-        maven { url project.properties.mavenThirdPartyRepository }
+        maven { url project.properties.repoMavenApacheOrgRepository }
+        maven { url project.properties.pluginsGradleOrgRepository }
+        maven { url project.properties.mvnrepositoryComRepository }
+        maven { url project.properties.mavenRepositoryRedhatComRepository }
     }
     dependencies {
         classpath "com.netflix.nebula:gradle-ospackage-plugin:${project.properties.gradleOspackagePluginVersion}"
@@ -43,7 +46,10 @@ allprojects {
     }
 
     repositories {
-        maven { url project.properties.mavenThirdPartyRepository }
+        maven { url project.properties.repoMavenApacheOrgRepository }
+        maven { url project.properties.pluginsGradleOrgRepository }
+        maven { url project.properties.mvnrepositoryComRepository }
+        maven { url project.properties.mavenRepositoryRedhatComRepository }
     }
 
     configurations.all {
