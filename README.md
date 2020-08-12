@@ -16,11 +16,11 @@ following figure.
 
 ![Figure 1](./etc/OSTP.png)
 
-To use the TP, you send an email message containing a completed, supported ARIN template (see the
-**Supported Templates** section) to a configured mailbox. The TP polls that mailbox every minute for new messages and
-then interacts with Reg-RWS to process those messages. The TP then sends success/failure email messages to your mailbox.
-For email messages that contain unsupported templates or are malformed (for example, that contain a bad `From` address),
-the TP simply logs the details of those messages for you to review.
+To use the TP, you send an email message containing a completed, supported ARIN template (see
+**Appendix A: Supported Templates**) to a configured mailbox. The TP polls that mailbox every minute for new messages
+and then interacts with Reg-RWS to process those messages. The TP then sends success/failure email messages to your
+mailbox. For email messages that contain unsupported templates or are malformed (for example, that contain a bad `From`
+address), the TP simply logs the details of those messages for you to review.
 
 This document next describes how to build, run, and further develop the TP software.
 
@@ -57,18 +57,9 @@ To omit tests when building the software, use the following command:
 **Step 1:** Build the Docker image for the TP (see the `Dockerfile` for [details](./Dockerfile)) by entering the
 following command:
 
-    ./gradlew clean build buildDockerImage
+    docker build -t <image tag> .
 
-By default, the image will be named `arin-tp` with `latest` version (`arin-tp:latest` tag). If you need a different
-name/version for the produced Docker image, enter:
-
-    ./gradlew clean build buildDockerImage -PimageName=<image name> -PimageVersion=<image version> -Pbranch=<branch>
-
-* If the `imageName` property is set, the image name will be set to that value.
-* If the `imageVersion` property is set, the image version will be set to that value.
-* If the `branch` property is set to `master`, the image version will be set to `master`; otherwise, it will be set to
-  `f_<branch>` where `f` stands for feature.
-* The `imageVersion` property takes precedence over the `branch` property.
+See [the Docker documentation](https://docs.docker.com/engine/reference/commandline/tag/) for tag details.
 
 **Step 2:** The built Docker image can optionally be pushed to a remote Docker registry. To push the image to a remote
 registry:
@@ -77,18 +68,15 @@ I. Log into the Docker registry by entering the following command:
 
     docker login <Docker registry hostname>
 
-II. Build the code with the `pushDockerImage` Gradle task by entering the following command:
+II. Push the image by entering the following command:
 
-    ./gradlew clean build buildDockerImage pushDockerImage -PimageName=<image name> -PimageVersion=<image version> -Pbranch=<branch>
-
-Prefix the image name with the Docker registry's hostname (see
-[the Docker documentation](https://docs.docker.com/engine/reference/commandline/tag/) for tag details). For example,
-set the `imageName` property in the above command to `<Docker registry hostname>/arin-tp`. Further, optionally set the
-`imageVersion` and/or `branch` properties to tag the image with a version other than the default `latest` version.
+    docker push <image tag>
 
 The TP Docker image is then pushed to your remote Docker registry.
 
 If step 2 is skipped, the built Docker image is only available locally on your machine.
+
+See **Appendix B: Building the Docker Image Using Gradle** for an alternative way.
 
 ## Running the Docker Image
 
@@ -109,7 +97,7 @@ You can configure the TP Docker container by setting its environment variables i
 [config/.env](./config/.env) file for a sample) and then using the `--env-file` option. You can also use the `--env`
 option to set these variables. The `--env-file` option is recommended over the `--env` option because passing
 environment variables on the command line can sometimes be problematic, especially for values with whitespace
-characters. See the **Environment Variables** section for a complete list of available environment variables and their
+characters. See **Appendix C: Environment Variables** for a complete list of available environment variables and their
 possible values.
 
 The TP Docker container is configured for:
@@ -174,7 +162,7 @@ Another way to ensure the correctness of your code changes is to maintain and ru
 
     ./gradlew clean build
 
-## Supported Templates
+## Appendix A: Supported Templates
 
 The top-level `templates` directory contains all the ARIN templates this software supports:
 * POC
@@ -187,7 +175,45 @@ The top-level `templates` directory contains all the ARIN templates this softwar
 * Net Mod
 * V6 Net Mod
 
-## Environment Variables
+## Appendix B: Building the Docker Image Using Gradle
+
+**Step 1:** Build the Docker image for the TP (see the `Dockerfile` for [details](./Dockerfile)) by entering the
+following command:
+
+    ./gradlew clean build buildDockerImage
+
+By default, the image will be named `arin-tp` with `latest` version (`arin-tp:latest` tag). If you need a different
+name/version for the produced Docker image, enter:
+
+    ./gradlew clean build buildDockerImage -PimageName=<image name> -PimageVersion=<image version> -Pbranch=<branch>
+
+* If the `imageName` property is set, the image name will be set to that value.
+* If the `imageVersion` property is set, the image version will be set to that value.
+* If the `branch` property is set to `master`, the image version will be set to `master`; otherwise, it will be set to
+  `f_<branch>` where `f` stands for feature.
+* The `imageVersion` property takes precedence over the `branch` property.
+
+**Step 2:** The built Docker image can optionally be pushed to a remote Docker registry. To push the image to a remote
+registry:
+
+I. Log into the Docker registry by entering the following command:
+
+    docker login <Docker registry hostname>
+
+II. Build the code with the `pushDockerImage` Gradle task by entering the following command:
+
+    ./gradlew clean build buildDockerImage pushDockerImage -PimageName=<image name> -PimageVersion=<image version> -Pbranch=<branch>
+
+Prefix the image name with the Docker registry's hostname (see
+[the Docker documentation](https://docs.docker.com/engine/reference/commandline/tag/) for tag details). For example,
+set the `imageName` property in the above command to `<Docker registry hostname>/arin-tp`. Further, optionally set the
+`imageVersion` and/or `branch` properties to tag the image with a version other than the default `latest` version.
+
+The TP Docker image is then pushed to your remote Docker registry.
+
+If step 2 is skipped, the built Docker image is only available locally on your machine.
+
+## Appendix C: Environment Variables
 
 The TP can be configured using the following environment variables.
 
