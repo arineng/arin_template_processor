@@ -34,6 +34,9 @@ Before building the TP software, install:
 * [Java 11 or higher](https://jdk.java.net/)
 * [Docker Engine](https://docs.docker.com/engine/)
 
+This software has been tested with [OpenJDK 11](https://openjdk.java.net/projects/jdk/11/). It is expected to work with
+higher versions of Java, including from Oracle.
+
 ## Building the TP Software
 
 **Step 1:** Get the source code by entering the following commands in your terminal window:
@@ -85,11 +88,11 @@ After you have built and (optionally) pushed the TP Docker image, you can run th
 **Step 1:** If you pushed the TP Docker image to a remote Docker registry, pull that image by entering the following
 command:
 
-    docker pull <image name>:<image version>
+    docker pull <image tag>
 
 **Step 2:** Run the image by entering the following command:
 
-    docker run -ti --env-file=<full file path> <image name>:<image version>
+    docker run -ti --env-file=<full file path> <image tag>
 
 ## Configuring the Docker Container
 
