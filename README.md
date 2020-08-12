@@ -45,7 +45,7 @@ Before building the TP software, install:
 
     ./gradlew clean build
 
-This command builds and tests the software. It should produce a `template_processor` web archive (WAR) file in the
+This command builds and tests the software. It produces a `template_processor` web archive (WAR) file in the
 `template_processor/build/libs` directory.
 
 To omit tests when building the software, use the following command:
