@@ -79,11 +79,12 @@ I. Log into the Docker registry by entering the following command:
 
 II. Build the code with the `pushDockerImage` Gradle task by entering the following command:
 
-    ./gradlew clean build buildDockerImage pushDockerImage -PimageName=<image name>
+    ./gradlew clean build buildDockerImage pushDockerImage -PimageName=<image name> -PimageVersion=<image version> -Pbranch=<branch>
 
 Prefix the image name with the Docker registry's hostname (see
 [the Docker documentation](https://docs.docker.com/engine/reference/commandline/tag/) for tag details). For example,
-set the `imageName` property in the above command to `<Docker registry hostname>/arin-tp`.
+set the `imageName` property in the above command to `<Docker registry hostname>/arin-tp`. Further, optionally set the
+`imageVersion` and/or `branch` properties to tag the image with a version other than the default `latest` version.
 
 The TP Docker image is then pushed to your remote Docker registry.
 
