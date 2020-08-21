@@ -224,7 +224,7 @@ The TP can be configured using the following environment variables.
 
 ### TP_SMTP_HOST
 
-**Description:** The host name of your SMTP server.
+**Description:** The host name of your SMTP server responsible for receiving email templates and sending TP responses.
 
 **Required:** Yes
 
@@ -240,17 +240,17 @@ The TP can be configured using the following environment variables.
 
 <br>
 
-### TP_HOSTMASTER_NAME
+### TP_HOSTMASTER_EMAIL
 
-**Description:** The display name of the hostmaster mailbox you will send the filled ARIN templates to.
+**Description:** The email address of the hostmaster mailbox you will send the filled ARIN templates to.
 
 **Required:** Yes
 
 <br>
 
-### TP_HOSTMASTER_EMAIL
+### TP_HOSTMASTER_NAME
 
-**Description:** The email address of the hostmaster mailbox you will send the filled ARIN templates to.
+**Description:** The display name of the hostmaster mailbox.
 
 **Required:** Yes
 
@@ -269,7 +269,7 @@ templates from.
 
 ### TP_POP3_HOST
 
-**Description:** The host name of your POP3 server.
+**Description:** The host name of your POP3 server for polling new messages in the hostmaster mailbox.
 
 **Required:** Yes
 
