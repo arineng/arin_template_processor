@@ -60,7 +60,7 @@ To omit tests when building the software, use the following command:
 **Step 1:** Build the Docker image for the TP (see the `Dockerfile` for [details](./Dockerfile)) by entering the
 following command:
 
-    docker build -t <image tag> .
+    docker build -t NAME[:TAG] .
 
 See [the Docker documentation](https://docs.docker.com/engine/reference/commandline/tag/) for tag details.
 
@@ -69,11 +69,11 @@ registry:
 
 I. Log into the Docker registry by entering the following command:
 
-    docker login <Docker registry hostname>
+    docker login SERVER
 
 II. Push the image by entering the following command:
 
-    docker push <image tag>
+    docker push NAME[:TAG]
 
 The TP Docker image is then pushed to your remote Docker registry.
 
@@ -88,11 +88,11 @@ After you have built and (optionally) pushed the TP Docker image, you can run th
 **Step 1:** If you pushed the TP Docker image to a remote Docker registry, pull that image by entering the following
 command:
 
-    docker pull <image tag>
+    docker pull NAME[:TAG]
 
 **Step 2:** Run the image by entering the following command:
 
-    docker run -ti --env-file=<full file path> <image tag>
+    docker run -ti --env-file=FULL_FILE_PATH NAME[:TAG]
 
 ## Configuring the Docker Container
 
@@ -153,7 +153,7 @@ have a development SMTP server to receive email templates and send TP responses,
 test using OT&E, set the `TP_REGRWS_URL` environment variable to `https://reg.ote.arin.net/rest`. Then, you can build
 and run the TP code on your machine using the `run.sh` script by entering the following command:
 
-    ./run.sh --env-file=<full file path>
+    ./run.sh --env-file=FULL_FILE_PATH
 
 This brings up a Docker container named `arin-tp` that logs its activity to `stdout` (in the terminal window). You can
 then send a relevant test email template and observe the log for the TP response. You can further investigate by logging
@@ -168,15 +168,15 @@ Another way to ensure the correctness of your code changes is to maintain and ru
 ## Appendix A: Supported Templates
 
 The top-level `templates` directory contains all the ARIN templates this software supports:
-* POC
-* Org
-* Simple Reassign
-* Detailed Reassign
-* V6 Reassign
-* Reallocate
-* V6 Reallocate
-* Net Mod
-* V6 Net Mod
+* [POC](./templates/poc.txt)
+* [Org](./templates/org.txt)
+* [Simple Reassign](./templates/reassign-simple.txt)
+* [Detailed Reassign](./templates/reassign-detailed.txt)
+* [V6 Reassign](./templates/v6-reassign.txt)
+* [Reallocate](./templates/reallocate.txt)
+* [V6 Reallocate](./templates/v6-reallocate.txt)
+* [Net Mod](./templates/netmod.txt)
+* [V6 Net Mod](./templates/v6-netmod.txt)
 
 ## Appendix B: Building the Docker Image Using Gradle
 
@@ -185,32 +185,32 @@ following command:
 
     ./gradlew clean build buildDockerImage
 
-By default, the image will be named `arin-tp` with `latest` version (`arin-tp:latest` tag). If you need a different
-name/version for the produced Docker image, enter:
+By default, the image will be named `arin-tp` with `latest` tag (`arin-tp:latest` image). If you need a different
+name/tag for the produced Docker image, enter:
 
-    ./gradlew clean build buildDockerImage -PimageName=<image name> -PimageVersion=<image version> -Pbranch=<branch>
+    ./gradlew clean build buildDockerImage [-PimageName=NAME] [-PimageTag=TAG] [-Pbranch=BRANCH]
 
 * If the `imageName` property is set, the image name will be set to that value.
-* If the `imageVersion` property is set, the image version will be set to that value.
-* If the `branch` property is set to `master`, the image version will be set to `master`; otherwise, it will be set to
-  `f_<branch>` where `f` stands for feature.
-* The `imageVersion` property takes precedence over the `branch` property.
+* If the `imageTag` property is set, the image tag will be set to that value.
+* If the `branch` property is set to `master`, the image tag will be set to `master`; otherwise, it will be set to
+  `f_BRANCH` where `f` stands for feature.
+* The `imageTag` property takes precedence over the `branch` property.
 
 **Step 2:** The built Docker image can optionally be pushed to a remote Docker registry. To push the image to a remote
 registry:
 
 I. Log into the Docker registry by entering the following command:
 
-    docker login <Docker registry hostname>
+    docker login SERVER
 
 II. Build the code with the `pushDockerImage` Gradle task by entering the following command:
 
-    ./gradlew clean build buildDockerImage pushDockerImage -PimageName=<image name> -PimageVersion=<image version> -Pbranch=<branch>
+    ./gradlew clean build buildDockerImage pushDockerImage [-PimageName=NAME] [-PimageTag=TAG] [-Pbranch=BRANCH]
 
-Prefix the image name with the Docker registry's hostname (see
+Prefix the image name with the Docker registry server (see
 [the Docker documentation](https://docs.docker.com/engine/reference/commandline/tag/) for tag details). For example,
-set the `imageName` property in the above command to `<Docker registry hostname>/arin-tp`. Further, optionally set the
-`imageVersion` and/or `branch` properties to tag the image with a version other than the default `latest` version.
+set the `imageName` property in the above command to `SERVER/arin-tp`. Further, optionally set the
+`imageTag` and/or `branch` properties to tag the image with a tag other than the default `latest` tag.
 
 The TP Docker image is then pushed to your remote Docker registry.
 

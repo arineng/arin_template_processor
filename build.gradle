@@ -32,7 +32,7 @@ apply plugin: 'org.owasp.dependencycheck'
 description = 'ARIN Template Processor'
 
 allprojects {
-    apply plugin: "com.dorongold.task-tree"
+    apply plugin: 'com.dorongold.task-tree'
 
     group = 'ARIN'
 
@@ -83,7 +83,7 @@ allprojects {
         test {
             onlyIf { project.properties.skipTests != 'true' }
 
-            def pathname = "/src/test/resources/testng.xml"
+            def pathname = '/src/test/resources/testng.xml'
 
             useTestNG() {
                 if (file("$projectDir$pathname").exists()) {
@@ -199,26 +199,26 @@ task aggregateTestReport(type: TestReport) {
 
 ext {
     def imageName
-    if (project.hasProperty("imageName")) {
+    if (project.hasProperty('imageName')) {
         imageName = "${project.properties.imageName}"
     } else {
         imageName = 'arin-tp'
     }
 
-    def imageVersion
-    if (project.hasProperty("imageVersion")) {
-        imageVersion = "${project.properties.imageVersion}"
+    def imageTag
+    if (project.hasProperty('imageTag')) {
+        imageTag = "${project.properties.imageTag}"
     } else {
-        if (!project.hasProperty("branch")) {
-            imageVersion = 'latest'
-        } else if (project.properties.branch == "master") {
-            imageVersion = 'master'
+        if (!project.hasProperty('branch')) {
+            imageTag = 'latest'
+        } else if (project.properties.branch == 'master') {
+            imageTag = 'master'
         } else {
-            imageVersion = "f_${project.properties.branch}"
+            imageTag = "f_${project.properties.branch}"
         }
     }
 
-    imageTag = "$imageName:$imageVersion"
+    dockerImage = "$imageName:$imageTag"
 }
 
 task buildDockerImage() {
@@ -230,7 +230,7 @@ task buildDockerImage() {
     doFirst {
         exec {
             executable 'docker'
-            args 'build', '-t', imageTag, '.'
+            args 'build', '-t', dockerImage, '.'
         }
     }
 }
@@ -240,7 +240,7 @@ task pushDockerImage() {
     doFirst {
         exec {
             executable 'docker'
-            args 'push', imageTag
+            args 'push', dockerImage
         }
     }
 }
