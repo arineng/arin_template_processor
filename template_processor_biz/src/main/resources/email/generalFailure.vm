@@ -10,6 +10,4 @@ Many errors can be prevented by ensuring your e-mail client
 sends mail as "Plain Text", not as "HTML" or "Rich Text".
 ARIN only accepts templates in plain text format.
 
-#parse("email/closing.vm")
-
 #parse("email/submittedTemplate.vm")

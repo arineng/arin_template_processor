@@ -12,6 +12,4 @@ The request for the reallocated network has been assigned ticket number $ticketP
 
 #parse("email/ticketedRequestFooter.vm")
 
-#parse("email/closing.vm")
-
 #parse("email/submittedTemplate.vm")

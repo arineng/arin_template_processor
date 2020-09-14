@@ -162,11 +162,7 @@ public class MockTemplates
                 "This is a second line of additional information.\n" +
                 "And another line with a list: one, two, three.  That could look like a label.\n" +
 
-                "END OF TEMPLATE\n" +
-                "\n" +
-                "If you would like assistance completing this template, please do\n" +
-                "not hesitate to contact ARIN's Registration Services Help Desk\n" +
-                "at +1 (703) 227-0660. We'll be glad to help you!";
+                "END OF TEMPLATE";
     }
 
     public static String getTemplateBodyWithUnlabelledMultilineCity()
@@ -203,11 +199,7 @@ public class MockTemplates
                 "This is a second line of additional information.\n" +
                 "And another line with a list: one, two, three.  That could look like a label.\n" +
 
-                "END OF TEMPLATE\n" +
-                "\n" +
-                "If you would like assistance completing this template, please do\n" +
-                "not hesitate to contact ARIN's Registration Services Help Desk\n" +
-                "at +1 (703) 227-0660. We'll be glad to help you!";
+                "END OF TEMPLATE";
     }
 
     public static String getTemplateBodyWithLabelledMultilineCity()
@@ -244,11 +236,7 @@ public class MockTemplates
                 "This is a second line of additional information.\n" +
                 "And another line with a list: one, two, three.  That could look like a label.\n" +
 
-                "END OF TEMPLATE\n" +
-                "\n" +
-                "If you would like assistance completing this template, please do\n" +
-                "not hesitate to contact ARIN's Registration Services Help Desk\n" +
-                "at +1 (703) 227-0660. We'll be glad to help you!";
+                "END OF TEMPLATE";
     }
 
     public static String getTemplateBodyWithMixedMultilinePublicComments()
@@ -288,11 +276,7 @@ public class MockTemplates
                 "This is a second line of additional information.\n" +
                 "And another line with a list: one, two, three.  That could look like a label.\n" +
 
-                "END OF TEMPLATE\n" +
-                "\n" +
-                "If you would like assistance completing this template, please do\n" +
-                "not hesitate to contact ARIN's Registration Services Help Desk\n" +
-                "at +1 (703) 227-0660. We'll be glad to help you!";
+                "END OF TEMPLATE";
     }
 
     public static String getReassignSimpleTemplate()
@@ -317,10 +301,6 @@ public class MockTemplates
                 "12. Public Comments: Email me! I love spam!\n" +
                 "12. Public Comments: Line 2 of comments\n" +
                 "\n" +
-                "END OF TEMPLATE\n" +
-                "\n" +
-                "If you would like assistance completing this template, please do\n" +
-                "not hesitate to contact ARIN's Registration Services Help Desk\n" +
-                "at +1 (703) 227-0660. We'll be glad to help you!";
+                "END OF TEMPLATE";
     }
 }

@@ -11,6 +11,4 @@ http://whois.arin.net/rest/org/$!orgPayload.getOrgHandle()
 $!orgPayload.getOrgHandle() will be removed shortly.
 #end
 
-#parse("email/closing.vm")
-
 #parse("email/submittedTemplate.vm")

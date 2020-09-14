@@ -10,6 +10,4 @@ http://whois.arin.net/rest/poc/$pocPayload.getPocHandle()
 $pocPayload.getPocHandle() will be removed shortly.
 #end
 
-#parse("email/closing.vm")
-
 #parse("email/submittedTemplate.vm")
