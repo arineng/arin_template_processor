@@ -13,6 +13,4 @@ The request for the reassigned network has been assigned ticket number $ticketPa
 
 #parse("email/ticketedRequestFooter.vm")
 
-#parse("email/closing.vm")
-
 #parse("email/submittedTemplate.vm")

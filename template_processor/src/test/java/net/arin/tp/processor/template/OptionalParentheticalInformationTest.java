@@ -72,11 +72,7 @@ public class OptionalParentheticalInformationTest extends BaseTest
                 "12. Public Comments: Email me! I love spam!\n" +
                 "12. Public Comments: Line 2 of comments\n" +
                 "\n" +
-                "END OF TEMPLATE\n" +
-                "\n" +
-                "If you would like assistance completing this template, please do\n" +
-                "not hesitate to contact ARIN's Registration Services Help Desk\n" +
-                "at +1 (703) 227-0660. We'll be glad to help you!";
+                "END OF TEMPLATE";
     }
 
     private String getReassignSimpleTemplateWithMissingParentheticalData()
@@ -101,10 +97,6 @@ public class OptionalParentheticalInformationTest extends BaseTest
                 "12. Public Comments: Email me! I love spam!\n" +
                 "12. Public Comments: Line 2 of comments\n" +
                 "\n" +
-                "END OF TEMPLATE\n" +
-                "\n" +
-                "If you would like assistance completing this template, please do\n" +
-                "not hesitate to contact ARIN's Registration Services Help Desk\n" +
-                "at +1 (703) 227-0660. We'll be glad to help you!";
+                "END OF TEMPLATE";
     }
 }

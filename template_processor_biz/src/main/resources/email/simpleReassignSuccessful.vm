@@ -23,6 +23,4 @@ http://whois.arin.net/rest/net/$!netPayload.getNetHandle()
 $!netPayload.getNetHandle() will be removed shortly.  PLEASE NOTE: the associated customer record has not been removed.  If you want to delete the customer record associated with the network, you will need to do so via a RESTful call.
 #end
 
-#parse("email/closing.vm")
-
 #parse("email/submittedTemplate.vm")

@@ -4,6 +4,4 @@ Your request to create a new organization record has been assigned ticket number
 
 #parse("email/ticketedRequestFooter.vm")
 
-#parse("email/closing.vm")
-
 #parse("email/submittedTemplate.vm")

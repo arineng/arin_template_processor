@@ -10,6 +10,4 @@ http://whois.arin.net/rest/net/$netPayload.getNetHandle()
 $netPayload.getNetHandle() will be removed shortly.
 #end
 
-#parse("email/closing.vm")
-
 #parse("email/submittedTemplate.vm")

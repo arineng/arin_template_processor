@@ -8,6 +8,4 @@ To access your messages, log in and choose Notifications, or visit:
 
 $!{publicBaseUrl}/notifications
 
-#parse("email/closing.vm")
-
 #parse("email/submittedTemplate.vm")
