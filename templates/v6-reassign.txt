@@ -26,11 +26,10 @@ END OF TEMPLATE
 TEMPLATE INSTRUCTIONS:
 
 Please copy and paste the text-based template into the body of an
-e-mail and send to hostmaster@arin.net with the subject line, 
-"IPV6-REASSIGN". 
+e-mail and send with the subject line, "IPV6-REASSIGN".
 
-Please ensure your e-mail client sends ARIN the message as plain 
-ASCII text, not as HTML.
+Please ensure your e-mail client sends the message as plain ASCII
+text, not as HTML.
 
 Please do not attach the template.
 
