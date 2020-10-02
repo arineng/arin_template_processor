@@ -1,5 +1,5 @@
-Template: ARIN-IPv6-REALLOCATE-5.3
-** As of November 2019
+Template: ARIN-IPv6-REALLOCATE-5.4
+** As of October 2020
 ** Detailed instructions are located below the template.
 
 00. API Key:

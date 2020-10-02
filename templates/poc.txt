@@ -1,5 +1,5 @@
-Template: ARIN-POC-5.0
-**  As of March 2011
+Template: ARIN-POC-5.1
+**  As of October 2020
 **  Detailed instructions are located below the template.
 
 00. API Key:

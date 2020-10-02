@@ -1,5 +1,5 @@
-Template: ARIN-REASSIGN-SIMPLE-5.2
-**  As of May 2019
+Template: ARIN-REASSIGN-SIMPLE-5.3
+**  As of October 2020
 **  Detailed instructions are located below the template.
 
 00. API Key:
