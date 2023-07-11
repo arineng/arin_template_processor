@@ -39,5 +39,11 @@ dependencies {
 }
 
 test {
+    doFirst {
+        jvmArgs = [
+                '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
+        ]
+    }
+
     systemProperty 'arin.template.processor.baseurl_public', 'https://account.arin.net/public'
 }
