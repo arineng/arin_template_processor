@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 
 public class ProcessorTest extends BaseActionTest
 {
-    @Test(enabled = false) // TODO: Figure out why failing, and then re-enable.
+    @Test
     public void testExceptionsAreAllCaught() throws Exception
     {
         System.setProperty( TemplateProcessorProperties.PROP_POLLER_FOLDER, "INBOX" );
