@@ -166,20 +166,6 @@ public class Response
         }
     }
 
-    public static Message simpleReassignTicketed( TemplateMessage templateMessage, TicketPayload ticketPayload,
-                                                  CustomerPayload customerPayload )
-    {
-        try
-        {
-            return createResponse( templateMessage,
-                    new TicketedSimpleReassignResponseContext( ticketPayload, customerPayload ) );
-        }
-        catch ( MessagingException e )
-        {
-            throw new RuntimeException( e );
-        }
-    }
-
     public static Message simpleReassignSuccessful( TemplateMessage templateMessage, NetPayload netPayload,
                                                     CustomerPayload customerPayload )
     {
@@ -194,20 +180,6 @@ public class Response
         }
     }
 
-    public static Message detailedReassignTicketed( TemplateMessage templateMessage, TicketPayload ticketPayload,
-                                                    OrgPayload orgPayload )
-    {
-        try
-        {
-            return createResponse( templateMessage,
-                    new TicketedDetailedReassignResponseContext( ticketPayload, orgPayload ) );
-        }
-        catch ( MessagingException e )
-        {
-            throw new RuntimeException( e );
-        }
-    }
-
     public static Message detailedReassignSuccessful( TemplateMessage templateMessage, NetPayload netPayload,
                                                       OrgPayload orgPayload )
     {
@@ -215,19 +187,6 @@ public class Response
         {
             return createResponse( templateMessage,
                     new DetailedReassignResponseContext( netPayload, orgPayload ) );
-        }
-        catch ( MessagingException e )
-        {
-            throw new RuntimeException( e );
-        }
-    }
-
-    public static Message reallocateTicketed( TemplateMessage templateMessage, TicketPayload ticketPayload,
-                                              OrgPayload orgPayload )
-    {
-        try
-        {
-            return createResponse( templateMessage, new TicketedReallocateResponseContext( ticketPayload, orgPayload ) );
         }
         catch ( MessagingException e )
         {

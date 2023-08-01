@@ -15,11 +15,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * </p>
  *
  * <p>
- * Currently, the only instance in which this occurs is a SWIP. If your reallocation or reassignment meets the
- * conditions for auto processing, the TicketedRequest payload will have an embedded NetPayload representing the net
- * that was created as a result of your request. If your reallocation or reassignment does not meet the conditions for
- * auto processing, the TicketRequestPayload will have an embedded TicketPayload representing the ticket that was
- * created for your request. See the
+ * For your reallocation or reassignment request, the TicketedRequest payload will have an embedded NetPayload
+ * representing the net that was created as a result. See the
  * {@link net.arin.tp.api.service.NetService#reassign(String, String, NetPayload) reassign} and
  * {@link net.arin.tp.api.service.NetService#reallocate(String, String, NetPayload) reallocate} for more details.
  * </p>

@@ -80,17 +80,10 @@ public class ReassignSimpleTransformer extends NetTransformer
                 createPayload( template, netPayload, customerPayload );
                 netPayload.setParentNetHandle( parentNetPayload.getNetHandle() );
 
-                TicketedRequestPayload ticketedResponse = netService.reassign( parentNetPayload.getNetHandle(), template.getApiKey(), netPayload );
-                log.info( "Customer handle: " + ticketedResponse.getNet().getCustomerHandle() );
-                netPayload.getCustomer().setHandle( ticketedResponse.getNet().getCustomerHandle() );
-                if ( ticketedResponse.getTicket() != null )
-                {
-                    response = Response.simpleReassignTicketed( message, ticketedResponse.getTicket(), netPayload.getCustomer() );
-                }
-                else
-                {
-                    response = Response.simpleReassignSuccessful( message, ticketedResponse.getNet(), netPayload.getCustomer() );
-                }
+                TicketedRequestPayload ticketedRequestPayload = netService.reassign( parentNetPayload.getNetHandle(), template.getApiKey(), netPayload );
+                log.info( "Customer handle: " + ticketedRequestPayload.getNet().getCustomerHandle() );
+                netPayload.getCustomer().setHandle( ticketedRequestPayload.getNet().getCustomerHandle() );
+                response = Response.simpleReassignSuccessful( message, ticketedRequestPayload.getNet(), netPayload.getCustomer() );
             }
         }
         catch ( ClientResponseFailure crp )
@@ -141,7 +134,7 @@ public class ReassignSimpleTransformer extends NetTransformer
     {
         ReassignSimpleTemplateImpl template = ( ReassignSimpleTemplateImpl ) message.getTemplate();
         NetService netService = ServiceLocator.getNetService();
-        Message response = null;
+        Message response;
 
         try
         {
@@ -153,16 +146,8 @@ public class ReassignSimpleTransformer extends NetTransformer
 
             setAttachmentsAndAdditionalInfo( netPayload, template );
 
-            TicketedRequestPayload ticketedResponse = netService.remove( netPayload.getNetHandle(), template.getApiKey(), netPayload );
-
-            if ( ticketedResponse.getTicket() != null )
-            {
-                response = Response.simpleReassignTicketed( message, ticketedResponse.getTicket(), null );
-            }
-            else
-            {
-                response = Response.simpleReassignSuccessful( message, ticketedResponse.getNet(), null );
-            }
+            TicketedRequestPayload ticketedRequestPayload = netService.remove( netPayload.getNetHandle(), template.getApiKey(), netPayload );
+            response = Response.simpleReassignSuccessful( message, ticketedRequestPayload.getNet(), null );
         }
         catch ( ClientResponseFailure crp )
         {
