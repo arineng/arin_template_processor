@@ -2,7 +2,6 @@ package net.arin.tp.processor.transform;
 
 import net.arin.tp.api.payload.NetPayload;
 import net.arin.tp.api.payload.OrgPayload;
-import net.arin.tp.api.payload.TicketPayload;
 import net.arin.tp.api.payload.TicketedRequestPayload;
 import net.arin.tp.api.service.NetService;
 import net.arin.tp.processor.message.TemplateMessage;
@@ -16,12 +15,6 @@ public class ReallocateTransformer extends ComplexSwipTransformer
     TicketedRequestPayload performSwip( NetService netService, String parentNetHandle, String apiKey, NetPayload net )
     {
         return netService.reallocate( parentNetHandle, apiKey, net );
-    }
-
-    @Override
-    Message setupTicketedResponse( TemplateMessage message, TicketPayload ticket, OrgPayload org )
-    {
-        return Response.reallocateTicketed( message, ticket, org );
     }
 
     @Override

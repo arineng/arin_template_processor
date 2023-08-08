@@ -2,7 +2,6 @@ package net.arin.tp.processor.transform;
 
 import net.arin.tp.api.payload.NetPayload;
 import net.arin.tp.api.payload.OrgPayload;
-import net.arin.tp.api.payload.TicketPayload;
 import net.arin.tp.api.payload.TicketedRequestPayload;
 import net.arin.tp.processor.message.TemplateMessage;
 import net.arin.tp.processor.response.Response;
@@ -14,8 +13,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import javax.mail.Message;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReallocateTransformerTest extends ComplexSwipTransformerTest
 {
@@ -108,54 +105,5 @@ public class ReallocateTransformerTest extends ComplexSwipTransformerTest
         String content = ( String ) response.getContent();
         Assert.assertTrue( content.contains( "ARIN was unable to process your request" ) );
         // Mocked error response does not translate to detailed error message.
-    }
-
-    @Test
-    public void testTicketedReallocate() throws Exception
-    {
-        ReallocateTemplateImpl template = new IPV4ReallocateTemplateV4Impl();
-
-        template.setApiKey( "API-0000-0000-0000-0000" );
-        template.getEmbeddedOrg().setOrgHandle( "REALLOCATE-ORG1-HANDLE" );
-        template.setIpAddress( "112.164.192.000/19" );
-        template.setNetName( "Network Name" );
-
-        List<String> text = new ArrayList<>();
-        text.add( "Some additional information." );
-        template.setAdditionalInfo( text );
-
-        // For when we query for the parent network.
-        final NetPayload netPayload = new NetPayload();
-        netPayload.setNetHandle( "REALLOCATE-PARENTNET1-HANDLE" );
-
-        // For when we query for the organization.
-        final OrgPayload orgPayload = new OrgPayload();
-        orgPayload.setOrgHandle( "REALLOCATE-ORG1-HANDLE" );
-
-        // For when we actually perform the reallocate.
-        final TicketedRequestPayload ticketedRequestPayload = new TicketedRequestPayload();
-        TicketPayload ticketPayload = new TicketPayload();
-        ticketPayload.setTicketNo( "20100901-1234" );
-        ticketedRequestPayload.setTicket( ticketPayload );
-
-        this.setupMock( new AbstractSetupAssistant()
-        {
-            public void coreSetup() throws Exception
-            {
-                createResponse( HttpStatus.SC_OK, netPayload );
-                createResponse( HttpStatus.SC_OK, orgPayload );
-                createResponse( HttpStatus.SC_OK, ticketedRequestPayload );
-            }
-        } );
-
-        TemplateMessage templateMessage = new TemplateMessage();
-        templateMessage.setTemplate( template );
-
-        route( templateMessage );
-
-        Assert.assertEquals( Response.getMessageQueue().size(), 1 );
-        Message response = Response.getMessageQueue().get( 0 );
-        String content = ( String ) response.getContent();
-        Assert.assertTrue( content.contains( "The request for the reallocated network has been assigned ticket number 20100901-1234" ) );
     }
 }

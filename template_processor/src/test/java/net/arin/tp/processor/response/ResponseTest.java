@@ -161,24 +161,6 @@ public class ResponseTest extends BaseTest
         Assert.assertEquals( Response.getMessageQueue().size(), 1 );
         response = Response.getMessageQueue().remove( 0 );
         Assert.assertEquals( response.getSubject(), "Re: " + subject );
-
-        subject = "Ticketed Reallocate";
-        templateMessage.setSubject( subject );
-        message = Response.reallocateTicketed( templateMessage, ticketPayload, orgPayload );
-        Response.send( message );
-
-        Assert.assertEquals( Response.getMessageQueue().size(), 1 );
-        response = Response.getMessageQueue().remove( 0 );
-        Assert.assertEquals( response.getSubject(), "Re: " + subject );
-
-        subject = "Ticketed Simple Reassign";
-        templateMessage.setSubject( subject );
-        message = Response.simpleReassignTicketed( templateMessage, ticketPayload, customerPayload );
-        Response.send( message );
-
-        Assert.assertEquals( Response.getMessageQueue().size(), 1 );
-        response = Response.getMessageQueue().remove( 0 );
-        Assert.assertEquals( response.getSubject(), "Re: " + subject );
     }
 
     private List<String> getToAddresses( Message mailMessage ) throws MessagingException

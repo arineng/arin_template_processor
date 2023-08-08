@@ -3,7 +3,6 @@ package net.arin.tp.processor.transform;
 import net.arin.tp.ipaddr.IPRange;
 import net.arin.tp.api.payload.NetPayload;
 import net.arin.tp.api.payload.OrgPayload;
-import net.arin.tp.api.payload.TicketPayload;
 import net.arin.tp.api.payload.TicketedRequestPayload;
 import net.arin.tp.api.service.NetService;
 import net.arin.tp.api.service.OrgService;
@@ -24,8 +23,6 @@ import java.util.ArrayList;
 public abstract class ComplexSwipTransformer extends NetTransformer
 {
     abstract TicketedRequestPayload performSwip( NetService netService, String parentNetHandle, String apiKey, NetPayload net );
-
-    abstract Message setupTicketedResponse( TemplateMessage message, TicketPayload ticket, OrgPayload org );
 
     abstract Message setupUnticketedResponse( TemplateMessage message, NetPayload net, OrgPayload org );
 
@@ -84,16 +81,9 @@ public abstract class ComplexSwipTransformer extends NetTransformer
             setAttachmentsAndAdditionalInfo( netPayload, template );
 
             // Now perform reallocate or detailed reassign.
-            TicketedRequestPayload ticketedResponse = performSwip( netService, parentNetPayload.getNetHandle(),
+            TicketedRequestPayload ticketedRequestPayload = performSwip( netService, parentNetPayload.getNetHandle(),
                     template.getApiKey(), netPayload );
-            if ( ticketedResponse.getTicket() != null )
-            {
-                response = setupTicketedResponse( message, ticketedResponse.getTicket(), orgPayload );
-            }
-            else
-            {
-                response = setupUnticketedResponse( message, ticketedResponse.getNet(), orgPayload );
-            }
+            response = setupUnticketedResponse( message, ticketedRequestPayload.getNet(), orgPayload );
         }
         catch ( ClientResponseFailure crf )
         {
