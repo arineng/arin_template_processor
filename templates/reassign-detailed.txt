@@ -49,7 +49,7 @@ TEMPLATE". Both are required for processing.
 01. Please specify the Org ID for the downstream organization to whom
     you are reallocating IP addresses then skip to field 20.
     
-02. – 19. Deprecated in accordance with community adopted policies.
+02. - 19. Deprecated in accordance with community adopted policies.
 
 NETWORK SECTION:
 
