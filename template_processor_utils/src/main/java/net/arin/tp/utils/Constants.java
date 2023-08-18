@@ -12,7 +12,7 @@ public class Constants
     public static final String SWIP_START_AND_END_V6 = "(" + IPAddr.IPV6_REGEX + "|" + IPV6_REGEX_SHORT_FORM + ")" + "\\s*-\\s*" + "(" + IPAddr.IPV6_REGEX + "|" + IPV6_REGEX_SHORT_FORM + ")";
 
     // Used by TemplateImpl.
-    public static final String API_KEY = ".*(API-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}).*";
+    public static final String API_KEY = ".*(API(?:-[0-9A-Fa-f]{4}){4,8}).*";
 
     // Mock queues for tests.
     public static final String ROUTER_QUEUE = "queue/regcoreRouterQueue";
