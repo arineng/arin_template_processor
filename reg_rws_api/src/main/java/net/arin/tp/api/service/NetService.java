@@ -128,9 +128,9 @@ public interface NetService extends Service
      * to remove the customer record.
      * </p>
      * <p>
-     * To return direct assignments (DS) or direct allocations (DA) please use Ask ARIN when logged in to ARIN Online.
-     * You will receive an {@link net.arin.tp.api.payload.ErrorPayload ErrorPayload} if you attempt to use this REST
-     * service to return a DA or DS network.
+     * To return direct allocations (DA), please use Ask ARIN when logged in to ARIN Online. You will receive an
+     * {@link net.arin.tp.api.payload.ErrorPayload ErrorPayload} if you attempt to use this REST service to return a
+     * DA network.
      * </p>
      *
      * @param netHandle The handle of the network to be removed
@@ -161,9 +161,9 @@ public interface NetService extends Service
      * removed - the Customer record will remain on record. You will need to issue a separate customer delete request
      * to remove the customer record.</p>
      * <p>
-     * To return direct assignments (DS) or direct allocations (DA) please use Ask ARIN when logged in to ARIN Online.
-     * You will receive an {@link net.arin.tp.api.payload.ErrorPayload ErrorPayload} if you attempt to use this REST
-     * service to return a DA or DS network.
+     * To return direct allocations (DA), please use Ask ARIN when logged in to ARIN Online. You will receive an
+     * {@link net.arin.tp.api.payload.ErrorPayload ErrorPayload} if you attempt to use this REST service to return a
+     * DA network.
      * </p>
      *
      * @param netHandle  The handle of the network to be removed
