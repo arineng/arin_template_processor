@@ -72,11 +72,6 @@ public class NetBlockPayload implements Payload, Comparable<NetBlockPayload>
         DA( "Direct Allocation" ),
 
         /**
-         * Used to represent a Direct Assignment network.
-         */
-        DS( "Direct Assignment" ),
-
-        /**
          * Used to represent an AFRINIC transferred network.
          */
         FX( "AFRINIC Transferred" ),
@@ -164,7 +159,6 @@ public class NetBlockPayload implements Payload, Comparable<NetBlockPayload>
         // ARIN DIRECT NETS
         // Parent net type can be null, AR, AV, RV, PV, LN or AF.
         public static final NetType DIRECT_ALLOCATION = DA;
-        public static final NetType DIRECT_ASSIGNMENT = DS;
 
         // LEVEL 3+ NETS OUT OF DA NETS ONLY
         public static final NetType REALLOCATED = A; // Can be hierarchical.
