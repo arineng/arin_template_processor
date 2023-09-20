@@ -59,8 +59,8 @@ public interface OrgService extends Service
      * request and is included in the ORG payload.<br/>
      * <br/>
      * This method is typically used to create an ORG record for an organization that wants to request a Direct
-     * Allocation or Direct Assignment from ARIN. It should NOT be used to create a downstream organization that an
-     * upstream ISP wants to reassign or reallocate networks to.<br/>
+     * Allocation from ARIN. It should NOT be used to create a downstream organization that an upstream ISP wants to
+     * reassign or reallocate networks to.<br/>
      * <br/>
      * Note that in most cases, the submitter will want to ensure that a POC, linked to the submitter's ARIN Online user
      * account (either thru ARIN Online, or by creating the POC with makeLink=true), is included as an Admin or Tech POC

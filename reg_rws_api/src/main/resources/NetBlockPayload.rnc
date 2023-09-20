@@ -24,7 +24,6 @@ start =
             xsd:string "RX" |
             xsd:string "FX" |
             xsd:string "DA" |
-            xsd:string "DS" |
             xsd:string "A"  |
             xsd:string "S"  }?
       )

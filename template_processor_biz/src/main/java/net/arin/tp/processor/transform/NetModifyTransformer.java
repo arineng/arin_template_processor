@@ -23,8 +23,8 @@ import javax.mail.Message;
 import java.util.List;
 
 /**
- * Process the net modification or removal. Net returns of a DA or DS net type should be directly sent to ARIN and not
- * processed via Template Processor/Reg-RWS code. For modifications, DA, DS, A, and S net types may be processed.
+ * Process the net modification or removal. Net returns of a DA net type should be directly sent to ARIN and not
+ * processed via Template Processor/Reg-RWS code. For modifications, DA, A, and S net types may be processed.
  * <br/>
  * Any attempt to modify or remove a simple reassign network results in an error message. The user must submit a
  * REASSIGN-SIMPLE template to process simple reassigned networks.
@@ -153,8 +153,7 @@ public class NetModifyTransformer extends NetTransformer
 
     private boolean requiresReview( NetPayload payload )
     {
-        return NetBlockPayload.NetType.DIRECT_ALLOCATION.equals( payload.getNetType() )
-                || NetBlockPayload.NetType.DIRECT_ASSIGNMENT.equals( payload.getNetType() );
+        return NetBlockPayload.NetType.DIRECT_ALLOCATION.equals( payload.getNetType() );
     }
 
     protected static void modifyPayload( NetModifyTemplateImpl template, NetPayload payload )
