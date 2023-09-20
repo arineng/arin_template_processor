@@ -1,16 +1,21 @@
-Open-source ARIN Template Processor
------------------------------------
+ARIN's Open-source Template Processor
+-------------------------------------
 
 ## Overview
 
+For organizations who have not transitioned to ARIN’s Registration RESTful Service (Reg-RWS) to manage their
+[registration records](https://www.arin.net/resources/registry/reassignments/#reporting-reassignments), ARIN has
+created an open-source Template Processor (TP) as an alternative method to submit
+[SWIP email templates](https://www.arin.net/resources/registry/reassignments/#swip).
+
 This open-source software can help you provide network reassignment/reallocation information to ARIN, using traditional
-email templates. You just send email templates to an email server that you run, and this software converts and submits
+email templates. You just send email templates to an email server that you run, and this software converts and submits
 them to ARIN, using ARIN's RESTful API.
 
 ## Introduction
 
-Open-source ARIN Template Processor (TP) allows you to process various ARIN email templates yourself while interacting
-with the SMTP (Simple Mail Transfer Protocol) service you operate and with the Registration RESTful Service
+ARIN’s open-source Template Processor (TP) allows you to process various ARIN email templates yourself while interacting
+with the Simple Mail Transfer Protocol (SMTP) service you operate and with the Registration RESTful Service
 ([Reg-RWS](https://www.arin.net/resources/manage/regrws/quickstart)) that ARIN operates. This system is shown in the
 following figure.
 
