@@ -63,7 +63,7 @@ public interface OrgService extends Service
      * reassign or reallocate networks to.<br/>
      * <br/>
      * Note that in most cases, the submitter will want to ensure that a POC, linked to the submitter's ARIN Online user
-     * account (either thru ARIN Online, or by creating the POC with makeLink=true), is included as an Admin or Tech POC
+     * account (either thru ARIN Online, or by creating the POC with Reg-RWS), is included as an Admin or Tech POC
      * associated with the ORG being created in this request.  Failure to do so will result in creation of the ORG, but
      * the submitter will not have the authorization to execute subsequent GET, MODIFY, or DELETE actions on the ORG due
      * to insufficient authorization.<br/>

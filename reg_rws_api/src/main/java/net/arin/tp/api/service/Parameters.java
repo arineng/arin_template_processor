@@ -18,6 +18,10 @@ public class Parameters
 
     static final public String EMAIL = "email";
 
+    /**
+     * The makeLink parameter will be deprecated January 12, 2025. A link will be created between the ARIN Online user
+     * account identified by the APIKEY and the newly created POC.
+     */
     static final public String MAKE_LINK = "makeLink";
 
     static final public String POC_FUNCTION = "pocFunction";
