@@ -58,17 +58,15 @@ public interface PocService extends Service
      * returned. The POST method does not accept a POCHANDLE, because a new one is generated upon success of the request
      * and is included in the POC payload.<br/>
      * <br/>
-     * If MAKELINK is specified as <em>true</em>, the system will create a link between the ARIN Online user account
-     * identified by the APIKEY in the request and the newly created POC. If MAKELINK is omitted, or specified as
-     * <em>false</em>, then no link will be created between the submitter and the new POC. Specifying makeLink=true is
-     * useful when the submitter wants to retain control over the POC record for later update or removal. Note that for
-     * the "person" contactType, only one link to an ARIN Online user account is permitted; for the "role" contactType,
-     * multiple ARIN Online user accounts can link to the POC. (See {@link net.arin.tp.api.payload.PocPayload PocPayload}
-     * for information on specifying contactType.)
+     * A link will be created between the ARIN Online user account identified by the APIKEY in the request and the
+     * newly created POC. Note that for the "person" contactType, only one link to an ARIN Online user account is
+     * permitted; for the "role" contactType, multiple ARIN Online user accounts can link to the POC.
+     * (See {@link net.arin.regcore.api.payload.PocPayload PocPayload} for information on specifying contactType.)
      *
-     * @param apiKey         The API key that came in from the client
-     * @param autoLinkToUser Boolean indicating whether or not the newly created POC should be linked to the user
-     *                       associated to the API key
+     * @param apiKey         The API key that came in from the client.
+     * @param autoLinkToUser Deprecated: Starting January 12, 2025, if false, a 400 - Bad Request will be returned and
+     *                       the POC will not be created. If true or omitted, a link will be created between the ARIN
+     *                       Online user account identified by the APIKEY and the newly created POC.
      * @param pocPayload     A JAXB annotated object representing the POC attributes
      * @return A POC payload containing the newly created POC
      */
